@@ -31,10 +31,8 @@ collections:
           - name: pros
             label: Преимущества
             widget: list
-            field:
-              - { name: pro, label: Преимущество }
       - name: about
-        label:
+        label: О компании
         file: content/about.yml
         fields:
           - { name: title, label: Заголовок }
@@ -42,7 +40,7 @@ collections:
             label: Текст
             widget: markdown
       - name: contacts
-        label:
+        label: Контакты
         file: content/contacts.yml
         fields:
           - { name: companyName, label: Название компании }
@@ -52,7 +50,7 @@ collections:
             label: Телефонные номера
             widget: list
             field:
-              - { name: number, label: Телефонный номер }
+              { name: number, label: Номер, widget: string }
           - name: map
             label: Карта
             widget: object
