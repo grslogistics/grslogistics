@@ -1,7 +1,7 @@
+const siteMetadata = require('./site-metadata.json')
+
 module.exports = {
-  siteMetadata: {
-    title: 'Gatsby Default Starter'
-  },
+  siteMetadata,
   plugins: [
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',

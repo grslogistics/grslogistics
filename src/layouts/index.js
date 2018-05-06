@@ -31,6 +31,7 @@ const Layout = ({ children, data }) => (
   <ThemeProvider theme={theme}>
     <div>
       <Header>{data.site.siteMetadata.title}</Header>
+      { children }
     </div>
   </ThemeProvider>
 )

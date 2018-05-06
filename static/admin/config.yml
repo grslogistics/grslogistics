@@ -1,0 +1,15 @@
+backend:
+  name: git-gateway
+
+media_folder: static/assets
+
+collections:
+  - name: settings
+    label: Settings
+    files:
+      - label: Site Metadata
+        file: site-matadata.json
+        fields:
+          - { name: title, label: Title }
+          - { name: a, label: A }
+          - { name: b, label: B }
