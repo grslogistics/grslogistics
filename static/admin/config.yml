@@ -8,7 +8,7 @@ collections:
     label: Settings
     files:
       - label: Site Metadata
-        file: site-matadata.json
+        file: site-metadata.json
         fields:
           - { name: title, label: Title }
           - { name: a, label: A }
