@@ -5,7 +5,13 @@ import { ThemeProvider, injectGlobal } from 'styled-components'
 import { colors } from 'styles'
 
 import Header from '../components/header'
+import { Container, Inner } from 'components/layout'
 import 'typeface-open-sans'
+
+import fa from '@fortawesome/fontawesome'
+import faSolid from '@fortawesome/fontawesome-free-solid'
+
+fa.library.add(faSolid)
 
 injectGlobal`
   html {
@@ -30,8 +36,10 @@ const theme = {
 const Layout = ({ children, data }) => (
   <ThemeProvider theme={theme}>
     <div>
-      <Header>{data.site.siteMetadata.title}</Header>
-      { children }
+      <Header />
+      <Container>
+        <Inner>{children()}</Inner>
+      </Container>
     </div>
   </ThemeProvider>
 )
