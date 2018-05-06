@@ -5,11 +5,83 @@ media_folder: static/assets
 
 collections:
   - name: settings
-    label: Settings
+    label: Настройки
     files:
-      - label: Site Metadata
-        file: site-metadata.json
+      - label: Метаданные
+        name: site-metadata
+        file: config/metadata.yml
         fields:
           - { name: title, label: Title }
-          - { name: a, label: A }
-          - { name: b, label: B }
+  - name: pages
+    label: Страницы
+    files:
+      - name: main
+        label: Главная
+        file: content/main.yml
+        fields:
+          - name: hero
+            label: Hero
+            widget: object
+            fields:
+              - { name: title, label: Заголовок }
+              - { name: subtitle, label: Подзаголовок }
+          - name: about
+            label: О нас
+            widget: markdown
+          - name: pros
+            label: Преимущества
+            widget: list
+            field:
+              - { name: pro, label: Преимущество }
+      - name: about
+        label:
+        file: content/about.yml
+        fields:
+          - { name: title, label: Заголовок }
+          - name: body
+            label: Текст
+            widget: markdown
+      - name: contacts
+        label:
+        file: content/contacts.yml
+        fields:
+          - { name: companyName, label: Название компании }
+          - { name: address, label: Адрес }
+          - { name: email, label: Email }
+          - name: phoneNumbers
+            label: Телефонные номера
+            widget: list
+            field:
+              - { name: number, label: Телефонный номер }
+          - name: map
+            label: Карта
+            widget: object
+            fields:
+              - name: lat
+                label: Широта
+                widget: number
+                valueType: float
+              - name: long
+                label: Долгота
+                widget: number
+                valueType: float
+              - name: zoom
+                label: Масштаб
+                widget: number
+                valueType: float
+  - name: news
+    label: Новости
+    folder: content/news
+    fields:
+      - { name: date, label: Дата, widget: date }
+      - { name: title, label: Заголовок }
+      - { name: body, label: Текст, widget: markdown }
+  - name: services
+    label: Услуги
+    folder: content/services
+    fields:
+      - { name: slug, label: Name }
+      - { name: title, label: Заголовок }
+      - { name: description, label: Описание, widget: markdown }
+      - { name: steps, label: Схема работы, widget: list }
+      - { name: includes, label: Услуга включает, widget: list }
