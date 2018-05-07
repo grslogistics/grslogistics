@@ -37,9 +37,7 @@ const Layout = ({ children, data }) => (
   <ThemeProvider theme={theme}>
     <div>
       <Header />
-      <Container>
-        <Inner>{children()}</Inner>
-      </Container>
+      {children()}
     </div>
   </ThemeProvider>
 )

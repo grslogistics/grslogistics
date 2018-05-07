@@ -11,5 +11,12 @@ export default {
   a: `
     color: inherit;
     text-decoration: none;
+  `,
+  button: `
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
   `
 }

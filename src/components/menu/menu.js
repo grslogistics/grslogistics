@@ -1,8 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Fa from '@fortawesome/react-fontawesome'
+import breakpoint from 'styled-components-breakpoint'
 
+import MobileMenu from './mobile-menu'
 import reset from 'utils/style-reset'
 import colors from 'styles/colors'
 
@@ -21,16 +23,18 @@ class Menu extends Component {
       })
     )
   }
-  renderDropdownItem = ({ label, url }) => {
+  renderDropdownItem = ({ label, url }, i) => {
+    const key = `${i}:${url}:${label}`
     return (
-      <DropdownItem>
+      <DropdownItem key={key}>
         <DropdownLink href={url}>{label}</DropdownLink>
       </DropdownItem>
     )
   }
-  renderItem = ({ label, url, children }) => {
+  renderItem = ({ label, url, children }, i) => {
+    const key = `${i}:${url}:${label}`
     return (
-      <MenuItem>
+      <MenuItem key={key}>
         <MenuLink href={url}>
           {label}
           {children && <Fa style={iconStyle} icon="chevron-down" size="xs" />}
@@ -43,7 +47,12 @@ class Menu extends Component {
   }
   render () {
     const { items } = this.props
-    return <MenuList>{items.map(this.renderItem)}</MenuList>
+    return (
+      <Fragment>
+        <MenuList>{items.map(this.renderItem)}</MenuList>
+        <MobileMenu items={items} />
+      </Fragment>
+    )
   }
 }
 
@@ -81,7 +90,10 @@ const DropdownLink = styled.a`
 
 const MenuList = styled.ul`
   ${reset.ul};
-  display: flex;
+  display: none;
+  ${breakpoint('m')`
+    display: flex;
+  `};
 `
 
 const MenuItem = styled.li`
