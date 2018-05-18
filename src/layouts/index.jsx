@@ -1,18 +1,18 @@
 import 'init'
 import React from 'react'
 // import PropTypes from 'prop-types'
-// import Helmet from 'react-helmet'
+import Helmet from 'react-helmet'
 import { ThemeProvider, injectGlobal } from 'styled-components'
 import colors from 'style/colors'
 
-import Header from 'components/header'
+// import Header from 'components/header'
 // import { Container, Inner } from 'components/layout'
 import 'typeface-open-sans'
 import 'style/global.css'
 
-import CurrentBreakpoint from 'components/dev/current-breakpoint'
+// import CurrentBreakpoint from 'components/dev/current-breakpoint'
 
-import breakpoints from 'style/breakpoints'
+// import breakpoints from 'style/breakpoints'
 
 injectGlobal`
   html, body {
@@ -24,18 +24,17 @@ injectGlobal`
   }
 `
 
-const theme = {
-  breakpoints
-}
+// const theme = {
+//   breakpoints
+// }
 
-const Layout = ({ children, data }) => (
-  <ThemeProvider theme={theme}>
-    <div>
-      <CurrentBreakpoint />
-      <Header />
-      {children()}
-    </div>
-  </ThemeProvider>
+const Layout = ({ data, children }) => (
+  <React.Fragment>
+    <Helmet>
+      <title>{data.site.siteMetadata.title}</title>
+    </Helmet>
+    {children()}
+  </React.Fragment>
 )
 
 export default Layout
