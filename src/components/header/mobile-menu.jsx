@@ -5,7 +5,7 @@ import { Portal } from 'react-portal'
 import breakpoint from 'styled-components-breakpoint'
 
 import Flag from 'components/flag'
-import { Icon as FaIcon } from 'components/ui'
+import FaIcon from 'components/icon'
 import reset from 'style/reset'
 import { stopPropagation } from 'utils'
 

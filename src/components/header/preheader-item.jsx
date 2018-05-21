@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import colors from 'style/colors'
 
-import { Icon } from 'components/ui'
+import Icon from 'components/icon'
 import reset from 'style/reset'
 
 PreheaderItem.propTypes = {

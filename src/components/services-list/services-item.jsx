@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import { Icon } from 'components/ui'
+import Icon from 'components/icon'
 import colors from 'style/colors'
 import reset from 'style/reset'
 
@@ -27,7 +27,6 @@ const Link = styled.a`
   ${reset.a};
   color: ${colors.text};
   position: relative;
-  font-weight: bold;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -44,5 +43,6 @@ const Link = styled.a`
 
 const Title = styled.span`
   margin-top: 1rem;
-  font-size: 1.2rem;
+  font-weight: bold;
+  font-size: 1rem;
 `

@@ -9,7 +9,7 @@ Breakpoint.propTypes = {
 }
 
 function Breakpoint ({ children: render, breakPoint }) {
-  return render(breakPoint)
+  return render(breakPoint.key)
 }
 
 export default withViewport({

@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 import reset from 'style/reset'
 import { Button } from 'components/ui'
+import FeedbackButton from 'components/feedback-button'
 import { Section } from 'components/layout'
 
 HeroSection.propTypes = {
@@ -18,7 +19,7 @@ function HeroSection ({ title, subtitle, buttonLabel }) {
       <Inner>
         <Title>{title}</Title>
         <Subtitle>{subtitle}</Subtitle>
-        <Button>{buttonLabel}</Button>
+        <FeedbackButton>{buttonLabel}</FeedbackButton>
       </Inner>
     </Section>
   )
@@ -45,7 +46,9 @@ const Subtitle = styled.h3`
 `
 
 const Inner = styled.div`
+  height: 400px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: center;
 `

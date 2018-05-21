@@ -1,5 +1,4 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
 import { Form, Formik, Field } from 'formik'
 import styled from 'styled-components'
 import * as yup from 'yup'
@@ -24,7 +23,7 @@ const schema = yup.object({
   message: yup.string().required('Введите сообщение')
 })
 
-function RequestForm () {
+function FeedbackForm () {
   return (
     <Formik
       initialValues={initialValues}
@@ -81,7 +80,7 @@ function RequestForm () {
               </Field>
             </Grid.Unit>
             <SubmitGridUnit size={1}>
-              <Button type="submit" loading disabled={isSubmitting} primary>
+              <Button type="submit" disabled={isSubmitting} primary>
                 Оставить заявку
               </Button>
             </SubmitGridUnit>
@@ -92,8 +91,12 @@ function RequestForm () {
   )
 }
 
-export default RequestForm
+export default FeedbackForm
 
 const SubmitGridUnit = styled(Grid.Unit)`
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 `

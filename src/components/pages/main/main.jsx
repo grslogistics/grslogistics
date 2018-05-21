@@ -1,24 +1,31 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 
-import { Section } from 'components/layout'
-
+import About from './about'
 import Hero from './hero'
-import ServicesList from 'components/services-list'
+import Services from './services'
+import Pros from './pros'
+import CallToAction from './call-to-action'
+import RecentPosts from './recent-posts'
 
 Main.propTypes = {
-  hero: PropTypes.shape(Hero.propTypes),
-  services: PropTypes.shape(ServicesList.propTypes)
+  hero: PropTypes.object,
+  services: PropTypes.object,
+  about: PropTypes.object,
+  cta: PropTypes.object,
+  pros: PropTypes.object,
+  recentPosts: PropTypes.object
 }
 
-function Main ({ hero, services }) {
+function Main ({ hero, services, about, pros, cta, recentPosts }) {
   return (
     <Fragment>
       <Hero {...hero} />
-      <Section>
-        <ServicesList {...services} />
-      </Section>
+      <About {...about} />
+      <Services {...services} />
+      <Pros {...pros} />
+      <CallToAction {...cta} />
+      <RecentPosts {...recentPosts} />
     </Fragment>
   )
 }

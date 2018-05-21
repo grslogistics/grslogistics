@@ -5,7 +5,7 @@ import breakpoint from 'styled-components-breakpoint'
 
 import reset from 'style/reset'
 import colors from 'style/colors'
-import { Icon } from 'components/ui'
+import Icon from 'components/icon'
 
 class Menu extends Component {
   static propTypes = {
@@ -20,7 +20,8 @@ class Menu extends Component {
           })
         )
       })
-    )
+    ),
+    dropdownOnTop: PropTypes.bool
   }
   renderDropdownItem = ({ label, url }, i) => {
     const key = `${i}:${url}:${label}`
@@ -32,8 +33,9 @@ class Menu extends Component {
   }
   renderItem = ({ label, url = '#', children }, i) => {
     const key = `${i}:${url}:${label}`
+    const { dropdownOnTop } = this.props
     return (
-      <MenuItem key={key}>
+      <MenuItem key={key} dropdownOnTop={dropdownOnTop}>
         <MenuLink href={url}>
           {label}
           {children && <Icon style={iconStyle} icon="chevron-down" size="xs" />}
@@ -45,8 +47,8 @@ class Menu extends Component {
     )
   }
   render () {
-    const { items } = this.props
-    return <MenuList>{items.map(this.renderItem)}</MenuList>
+    const { items, ...props } = this.props
+    return <MenuList {...props}>{items.map(this.renderItem)}</MenuList>
   }
 }
 
@@ -57,13 +59,13 @@ const iconStyle = { marginLeft: '0.5rem' }
 const DropdownList = styled.ul`
   ${reset.ul};
   position: absolute;
-  top: 200%;
   left: 0;
   background: ${colors.background};
   opacity: 0;
   transition: all 0.2s;
   box-shadow: 0 1px 3px ${colors.shadow};
   pointer-events: none;
+  color: ${colors.text};
 `
 
 const DropdownItem = styled.li`
@@ -74,7 +76,7 @@ const DropdownItem = styled.li`
 const DropdownLink = styled.a`
   ${reset.a};
   display: block;
-  padding: 0.5rem 1rem;
+  padding: 0.5em 1rem;
   white-space: nowrap;
   transition: all 0.2s;
   &:hover {
@@ -85,6 +87,7 @@ const DropdownLink = styled.a`
 const MenuList = styled.ul`
   ${reset.ul};
   display: none;
+  font-size: 1rem;
   ${breakpoint('l')`
     display: flex;
   `};
@@ -93,10 +96,13 @@ const MenuList = styled.ul`
 const MenuItem = styled.li`
   ${reset.li};
   position: relative;
-  margin-left: 1.5rem;
+  margin-left: 1.5em;
+  ${DropdownList} {
+    ${({ dropdownOnTop }) => (dropdownOnTop ? `bottom: 200%` : `top: 200%`)};
+  }
   &:hover ${DropdownList} {
     pointer-events: initial;
-    top: 100%;
+    ${({ dropdownOnTop }) => (dropdownOnTop ? `bottom: 95%` : `top: 95%`)};
     opacity: 1;
   }
 `
@@ -105,7 +111,7 @@ const MenuLink = styled.a`
   ${reset.a};
   display: flex;
   align-items: center;
-  padding: 0.5rem 0;
+  padding: 0.5em 0;
   transition: all 0.2s;
   &:hover {
     color: ${colors.primary};

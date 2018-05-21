@@ -8,50 +8,15 @@ import Logo from 'components/logo'
 
 import Preheader from './preheader'
 import PreheaderItem from './preheader-item'
-import Menu from './menu'
+import Menu from 'components/menu'
 import MobileMenu from './mobile-menu'
 
 Header.propTypes = {
-  children: PropTypes.func
+  children: PropTypes.func,
+  menu: PropTypes.array
 }
 
-const menu = [
-  {
-    label: 'Главная',
-    url: '/'
-  },
-  {
-    label: 'О компании',
-    url: '/about'
-  },
-  {
-    groupLabel: 'Все услуги',
-    label: 'Услуги',
-    url: '/services',
-    children: [
-      { label: 'Перевозки морем', url: '/test' },
-      { label: 'Мультимодальные перевозки', url: '/test2' }
-    ]
-  },
-  {
-    groupLabel: 'Вся полезная информация',
-    label: 'Полезная информация',
-    children: [
-      { label: 'Перевозки морем', url: '/test' },
-      { label: 'Мультимодальные перевозки', url: '/test2' }
-    ]
-  },
-  {
-    label: 'Новости',
-    url: '/news'
-  },
-  {
-    label: 'Контакты',
-    url: '/contacts'
-  }
-]
-
-function Header ({ children }) {
+function Header ({ children, menu }) {
   return (
     <Fragment>
       <Preheader>

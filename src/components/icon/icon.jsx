@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Fa from '@fortawesome/react-fontawesome'
 
+import './custom-icons'
+
 Icon.propTypes = {
   icon: PropTypes.oneOfType([
     PropTypes.string,
