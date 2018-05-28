@@ -7,7 +7,10 @@ import reset from 'style/reset'
 import Icon from 'components/icon'
 import { Grid, Section } from 'components/layout'
 
-const GRID_SIZE = 1 / 2
+const GRID_SIZES = {
+  xs: 1,
+  m: 1 / 2
+}
 
 Pros.propTypes = {
   title: PropTypes.string.isRequired,
@@ -20,9 +23,11 @@ function Pros ({ pros, title }) {
       <Inner>
         <Grid>
           {pros.map((pro, i) => (
-            <Grid.Unit key={`${pro}${i}`} size={GRID_SIZE}>
-              <Icon icon="check-circle" color={colors.primary} />
-              <Pro>{pro}</Pro>
+            <Grid.Unit key={`${pro}${i}`} size={GRID_SIZES}>
+              <Container>
+                <Icon icon="check-circle" color={colors.primary} />
+                <Pro>{pro}</Pro>
+              </Container>
             </Grid.Unit>
           ))}
         </Grid>
@@ -32,6 +37,13 @@ function Pros ({ pros, title }) {
 }
 
 export default Pros
+
+const Container = styled.div`
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+`
 
 const Inner = styled.div`
   max-width: 60rem;

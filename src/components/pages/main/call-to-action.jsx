@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import breakpoint from 'styled-components-breakpoint'
 
 import reset from 'style/reset'
 import colors from 'style/colors'
@@ -31,11 +32,21 @@ const Container = styled(Section)`
 const Inner = styled.div`
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
   align-items: center;
+  text-align: center;
+  ${breakpoint('l')`
+    flex-direction: row;
+    text-aling: left;
+  `};
 `
 
 const Title = styled.h2`
   ${reset.h};
   font-size: 2rem;
   color: #fff;
+  margin-bottom: 2rem;
+  ${breakpoint('l')`
+    margin-bottom: 0;
+  `};
 `

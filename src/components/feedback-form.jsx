@@ -19,7 +19,10 @@ const schema = yup.object({
     .string()
     .email('Введите корректный Email')
     .required('Введите email'),
-  number: yup.string().required('Введите телефон'),
+  number: yup
+    .string()
+    .matches(/^\+?[0-9()\- ]+$/, 'Введите корректный телефон')
+    .required('Введите телефон'),
   message: yup.string().required('Введите сообщение')
 })
 
