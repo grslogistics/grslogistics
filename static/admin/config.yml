@@ -10,24 +10,25 @@ collections:
     files:
       - label: Сайт
         name: site
-        file: content/site.yml
+        file: content/static/site.yml
         fields:
           - { name: title, label: Название сайта }
           - { name: copyright, label: Копирайт }
+          - { name: postsEnabled, label: Включить новости, widget: boolean }
   - name: pages
     label: Страницы
     files:
       - name: main
         label: Главная
-        file: content/main.yml
+        file: content/static/main.yml
         fields:
           - name: hero
             label: Hero
             widget: object
             fields:
-              - { name: image, label: Изображение }
               - { name: title, label: Заголовок }
               - { name: subtitle, label: Подзаголовок }
+              - { name: image, label: Изображение }
               - { name: button, label: Кнопка заказа }
           - name: about
             label: О нас
@@ -54,7 +55,7 @@ collections:
               - { name: title, label: Заголовок }
       - name: about
         label: О компании
-        file: content/about.yml
+        file: content/static/about.yml
         fields:
           - { name: title, label: Заголовок }
           - name: body
@@ -62,7 +63,7 @@ collections:
             widget: markdown
       - name: contacts
         label: Контакты
-        file: content/contacts.yml
+        file: content/static/contacts.yml
         fields:
           - { name: companyName, label: Название компании }
           - { name: address, label: Адрес }
