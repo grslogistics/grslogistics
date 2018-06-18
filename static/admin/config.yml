@@ -29,7 +29,7 @@ collections:
             fields:
               - { name: title, label: Заголовок }
               - { name: subtitle, label: Подзаголовок }
-              - { name: image, label: Изображение }
+              - { name: image, label: Изображение, widget: image }
               - { name: button, label: Кнопка заказа }
           - name: about
             label: О нас
