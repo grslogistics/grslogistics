@@ -6,7 +6,7 @@ import breakpoint from 'styled-components-breakpoint'
 import colors from 'style/colors'
 import reset from 'style/reset'
 import MenuComponent from 'components/menu'
-import { Container as ContainerComponent, Grid } from 'components/layout'
+import { Container as ContainerComponent } from 'components/layout'
 
 Footer.propTypes = {
   copyright: PropTypes.string.isRequired,
@@ -30,12 +30,16 @@ const Container = styled(ContainerComponent)`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 80px;
 `
 
 const Outer = styled.div`
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: ${colors.black};
   color: #fff;
-  padding: 1rem 0;
 `
 
 const Copyright = styled.p`

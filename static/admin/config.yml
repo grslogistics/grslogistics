@@ -2,16 +2,18 @@ backend:
   name: git-gateway
 
 media_folder: static/assets
+public_folder: /assets
 
 collections:
   - name: settings
     label: Настройки
     files:
-      - label: Метаданные
-        name: site-metadata
-        file: config/metadata.yml
+      - label: Сайт
+        name: site
+        file: content/site.yml
         fields:
-          - { name: title, label: Title }
+          - { name: title, label: Название сайта }
+          - { name: copyright, label: Копирайт }
   - name: pages
     label: Страницы
     files:
@@ -23,14 +25,33 @@ collections:
             label: Hero
             widget: object
             fields:
+              - { name: image, label: Изображение }
               - { name: title, label: Заголовок }
               - { name: subtitle, label: Подзаголовок }
+              - { name: button, label: Кнопка заказа }
           - name: about
             label: О нас
-            widget: markdown
+            widget: object
+            fields:
+              - { name: title, label: Заголовок }
+              - { name: text, label: Текст }
           - name: pros
             label: Преимущества
-            widget: list
+            widget: object
+            fields:
+              - { name: title, label: Заголовок }
+              - { name: list, label: Список }
+          - name: cta
+            label: Призыв к действию
+            widget: object
+            fields:
+              - { name: text, label: Текст }
+              - { name: button, label: Кнопка заказа }
+          - name: posts
+            label: Новости
+            widget: object
+            fields:
+              - { name: title, label: Заголовок }
       - name: about
         label: О компании
         file: content/about.yml

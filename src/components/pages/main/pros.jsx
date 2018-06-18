@@ -14,15 +14,15 @@ const GRID_SIZES = {
 
 Pros.propTypes = {
   title: PropTypes.string.isRequired,
-  pros: PropTypes.array.isRequired
+  list: PropTypes.array.isRequired
 }
 
-function Pros ({ pros, title }) {
+function Pros ({ list, title }) {
   return (
     <Section background={colors.lightGray} title={title}>
       <Inner>
         <Grid>
-          {pros.map((pro, i) => (
+          {list.map((pro, i) => (
             <Grid.Unit key={`${pro}${i}`} size={GRID_SIZES}>
               <Container>
                 <Icon icon="check-circle" color={colors.primary} />
@@ -42,7 +42,7 @@ const Container = styled.div`
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 `
 
 const Inner = styled.div`

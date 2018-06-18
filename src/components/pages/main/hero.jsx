@@ -3,23 +3,22 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import reset from 'style/reset'
-import { Button } from 'components/ui'
 import FeedbackButton from 'components/feedback-button'
 import { Section } from 'components/layout'
 
 HeroSection.propTypes = {
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
-  buttonLabel: PropTypes.string.isRequired
+  button: PropTypes.string.isRequired
 }
 
-function HeroSection ({ title, subtitle, buttonLabel }) {
+function HeroSection ({ title, subtitle, button }) {
   return (
     <Section background="#2a516e">
       <Inner>
         <Title>{title}</Title>
         <Subtitle>{subtitle}</Subtitle>
-        <FeedbackButton>{buttonLabel}</FeedbackButton>
+        <FeedbackButton>{button}</FeedbackButton>
       </Inner>
     </Section>
   )

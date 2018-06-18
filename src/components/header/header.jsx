@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import colors from 'style/colors'
+import Link from 'gatsby-link'
 
+import colors from 'style/colors'
 import { Container } from 'components/layout'
 import Logo from 'components/logo'
 
@@ -38,7 +39,9 @@ function Header ({ children, menu }) {
       </Preheader>
       <HeaderWrapper>
         <HeaderContainer>
-          <Logo />
+          <Link to="/">
+            <Logo />
+          </Link>
           <Menu items={menu} />
           <MobileMenu items={menu} />
         </HeaderContainer>

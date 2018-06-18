@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import breakpoint from 'styled-components-breakpoint'
+import Link from 'gatsby-link'
 
 import reset from 'style/reset'
 import colors from 'style/colors'
@@ -27,7 +28,7 @@ class Menu extends Component {
     const key = `${i}:${url}:${label}`
     return (
       <DropdownItem key={key}>
-        <DropdownLink href={url}>{label}</DropdownLink>
+        <DropdownLink to={url}>{label}</DropdownLink>
       </DropdownItem>
     )
   }
@@ -36,7 +37,7 @@ class Menu extends Component {
     const { dropdownOnTop } = this.props
     return (
       <MenuItem key={key} dropdownOnTop={dropdownOnTop}>
-        <MenuLink href={url}>
+        <MenuLink to={url}>
           {label}
           {children && <Icon style={iconStyle} icon="chevron-down" size="xs" />}
         </MenuLink>
@@ -73,7 +74,7 @@ const DropdownItem = styled.li`
   display: block;
 `
 
-const DropdownLink = styled.a`
+const DropdownLink = styled(Link)`
   ${reset.a};
   display: block;
   padding: 0.5em 1rem;
@@ -107,7 +108,7 @@ const MenuItem = styled.li`
   }
 `
 
-const MenuLink = styled.a`
+const MenuLink = styled(Link)`
   ${reset.a};
   display: flex;
   align-items: center;

@@ -1,12 +1,13 @@
 // import 'init'
+import * as R from 'ramda'
 import React from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 // import Helmet from 'react-helmet'
-import { ThemeProvider, injectGlobal } from 'styled-components'
-import colors from 'style/colors'
+import styled, { ThemeProvider } from 'styled-components'
 
 import Header from 'components/header'
 import Footer from 'components/footer'
+import { TitleProvider } from 'components/meta'
 // import { Container, Inner } from 'components/layout'
 import 'typeface-pt-sans'
 import 'style/global.css'
@@ -19,7 +20,49 @@ const theme = {
   breakpoints
 }
 
-const menu = [
+Layout.propTypes = {
+  children: PropTypes.any,
+  data: PropTypes.object.isRequired
+}
+
+function Layout ({ children, data }) {
+  const { title, copyright, postsEnabled } = data.file.childStaticYaml
+  const menu = postsEnabled ? MENU : R.reject(R.propEq('url', '/news'), MENU)
+  return (
+    <ThemeProvider theme={theme}>
+      <TitleProvider prefix={title}>
+        <AppContainer>
+          <CurrentBreakpoint />
+          <Header menu={menu} />
+          {children()}
+          <Footer copyright={copyright} menu={menu} />
+        </AppContainer>
+      </TitleProvider>
+    </ThemeProvider>
+  )
+}
+
+export default Layout
+
+export const query = graphql`
+  query SiteQuery {
+    file(name: { eq: "site" }, sourceInstanceName: { eq: "static" }) {
+      childStaticYaml {
+        title
+        copyright
+      }
+    }
+  }
+`
+
+const AppContainer = styled.div`
+  box-sizing: border-box;
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 80px;
+`
+
+const MENU = [
   {
     label: 'Главная',
     url: '/'
@@ -54,26 +97,3 @@ const menu = [
     url: '/contacts'
   }
 ]
-
-const Layout = ({ children, data }) => (
-  <ThemeProvider theme={theme}>
-    <div>
-      <CurrentBreakpoint />
-      <Header menu={menu} />
-      {children()}
-      <Footer copyright="© 2014 Creative PSD design" menu={menu} />
-    </div>
-  </ThemeProvider>
-)
-
-export default Layout
-
-export const query = graphql`
-  query SiteTitleQuery {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`

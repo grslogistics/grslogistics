@@ -9,15 +9,16 @@ import { Section } from 'components/layout'
 import FeedbackButton from 'components/feedback-button'
 
 CallToAction.propTypes = {
-  title: PropTypes.string.isRequired
+  text: PropTypes.string.isRequired,
+  button: PropTypes.string.isRequired
 }
 
-function CallToAction ({ title }) {
+function CallToAction ({ text, button }) {
   return (
-    <Container background={colors.text}>
+    <Container background={colors.primary}>
       <Inner>
-        <Title>{title}</Title>
-        <FeedbackButton white>Оставить заявку</FeedbackButton>
+        <Title>{text}</Title>
+        <FeedbackButton white>{button}</FeedbackButton>
       </Inner>
     </Container>
   )
