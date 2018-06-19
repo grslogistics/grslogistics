@@ -2,12 +2,12 @@ import StyledComponentsGrid from 'styled-components-grid'
 import styled from 'styled-components'
 
 const GUTTERS = {
-  vertical: 1,
+  vertical: 2,
   horizontal: 1
 }
 
-const gridMargin = GUTTERS.horizontal * -0.5 + 'rem'
-const unitSideBorder = GUTTERS.horizontal * 0.5 + 'rem'
+const gridMargin = GUTTERS.horizontal * -(GUTTERS.horizontal / 2) + 'rem'
+const unitSideBorder = GUTTERS.horizontal * (GUTTERS.horizontal / 2) + 'rem'
 const unitBottomBorder = GUTTERS.vertical + 'rem'
 
 const Unit = styled(StyledComponentsGrid.Unit)`

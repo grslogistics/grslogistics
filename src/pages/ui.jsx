@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
-
+import * as R from 'ramda'
 import { Section, Grid } from 'components/layout'
-import { Button, Input } from 'components/ui'
+import { Button, Input, Table } from 'components/ui'
 
 const Ui = () => (
   <Fragment>
@@ -90,6 +90,30 @@ const Ui = () => (
           </Button>
         </Grid.Unit>
       </Grid>
+    </Section>
+    <Section>
+      <Table>
+        <thead>
+          <tr>
+            <th>Имя</th>
+            <th>Город</th>
+            <th>Email</th>
+            <th>Цена</th>
+            <th>Валюта</th>
+          </tr>
+        </thead>
+        <tbody>
+          {R.repeat(null, 10).map((_, i) => (
+            <tr key={i}>
+              <td>John Doe</td>
+              <td>Kyiv</td>
+              <td>john@doe.com</td>
+              <td>1000</td>
+              <td>UAH</td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
     </Section>
   </Fragment>
 )

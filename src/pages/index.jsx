@@ -32,6 +32,7 @@ export const query = graphql`
           title
           subtitle
           button
+          image
         }
         about {
           title

@@ -9,12 +9,13 @@ import { Section } from 'components/layout'
 HeroSection.propTypes = {
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
-  button: PropTypes.string.isRequired
+  button: PropTypes.string.isRequired,
+  image: PropTypes.string
 }
 
-function HeroSection ({ title, subtitle, button }) {
+function HeroSection ({ title, subtitle, button, image }) {
   return (
-    <Section background="#2a516e">
+    <Section background="#2a516e" image={image}>
       <Inner>
         <Title>{title}</Title>
         <Subtitle>{subtitle}</Subtitle>
