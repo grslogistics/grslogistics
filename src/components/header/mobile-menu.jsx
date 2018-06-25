@@ -32,7 +32,7 @@ export default class MobileMenu extends Component {
       </SubmenuItem>
     )
   }
-  renderItem = ({ label, groupLabel, url, children }, i) => {
+  renderItem = ({ label, url, children }, i) => {
     const key = `${i}:${url}:${label}`
     return children ? (
       <Flag key={key}>
@@ -44,9 +44,6 @@ export default class MobileMenu extends Component {
             </MenuLink>
             <SubmenuOuter>
               <SubmenuList open={isOn}>
-                <SubmenuItem>
-                  <SubmenuLink href={url}>{groupLabel}</SubmenuLink>
-                </SubmenuItem>
                 {children.map(this.renderSubmenuItem)}
               </SubmenuList>
             </SubmenuOuter>

@@ -3,9 +3,8 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import colors from 'style/colors'
-import reset from 'style/reset'
-import Icon from 'components/icon'
 import { Grid, Section } from 'components/layout'
+import { List } from 'components/ui'
 
 const GRID_SIZES = {
   xs: 1,
@@ -20,39 +19,25 @@ Pros.propTypes = {
 function Pros ({ list, title }) {
   return (
     <Section background={colors.lightGray} title={title}>
-      <Inner>
-        <Grid>
-          {list.map((pro, i) => (
-            <Grid.Unit key={`${pro}${i}`} size={GRID_SIZES}>
-              <Container>
-                <Icon icon="check-circle" color={colors.primary} />
-                <Pro>{pro}</Pro>
-              </Container>
-            </Grid.Unit>
-          ))}
-        </Grid>
-      </Inner>
+      <Grid>
+        <Grid.Unit size={GRID_SIZES}>
+          <List>
+            {list.map((pro, i) => (
+              <List.Item key={`${pro}@${i}`}>{pro}</List.Item>
+            ))}
+          </List>
+        </Grid.Unit>
+        <Grid.Unit size={GRID_SIZES}>
+          <ImgMock />
+        </Grid.Unit>
+      </Grid>
     </Section>
   )
 }
 
 export default Pros
 
-const Container = styled.div`
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-  justify-content: flex-start;
-`
-
-const Inner = styled.div`
-  max-width: 60rem;
-  margin: 0 auto;
-`
-
-const Pro = styled.p`
-  ${reset.p};
-  display: inline-block;
-  font-size: 1.2rem;
-  margin-left: 0.5rem;
+const ImgMock = styled.div`
+  background-color: ${colors.primary};
+  height: 100%;
 `

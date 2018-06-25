@@ -105,4 +105,9 @@ collections:
       - { name: title, label: Заголовок }
       - { name: description, label: Описание, widget: markdown }
       - { name: steps, label: Схема работы, widget: list }
-      - { name: includes, label: Услуга включает, widget: list }
+      - name: additional
+        label: Дополнительно
+        widget: object
+        fields:
+          - { name: title, label: Заголовок }
+          - { name: text, label: Текст }

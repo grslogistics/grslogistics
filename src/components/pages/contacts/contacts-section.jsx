@@ -45,7 +45,7 @@ function ContactsSection ({ companyName, address, phoneNumbers, email }) {
 
 export default ContactsSection
 
-const getNumberUrl = number => 'tel:+' + number.replace(/[+()\- ]/g, '')
+const getNumberUrl = number => 'tel:' + number.replace(/[()\- ]/g, '')
 
 const CompanyName = styled.h4`
   ${reset.h};

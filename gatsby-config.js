@@ -13,13 +13,13 @@ module.exports = {
         name: 'static'
       }
     },
-    // {
-    //   resolve: 'gatsby-source-filesystem',
-    //   options: {
-    //     path: `${__dirname}/content/services`,
-    //     name: 'services'
-    //   }
-    // },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/content/services`,
+        name: 'services'
+      }
+    },
     // {
     //   resolve: 'gatsby-source-filesystem',
     //   options: {
@@ -28,7 +28,7 @@ module.exports = {
     //   }
     // },
     'gatsby-transformer-yaml',
-    'gatsby-transformer-remark',
+    // 'gatsby-transformer-remark',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
     'gatsby-plugin-resolve-src',

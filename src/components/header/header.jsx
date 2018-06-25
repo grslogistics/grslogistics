@@ -14,26 +14,30 @@ import MobileMenu from './mobile-menu'
 
 Header.propTypes = {
   children: PropTypes.func,
-  menu: PropTypes.array
+  menu: PropTypes.array,
+  phoneNumber: PropTypes.string.isRequired,
+  address: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired
 }
 
-function Header ({ children, menu }) {
+function Header ({ children, menu, phoneNumber, email, address }) {
   return (
     <Fragment>
       <Preheader>
         <PreheaderItem
-          label="+38 (123) 456-78-90"
+          label={phoneNumber}
           icon="phone-square"
-          url="tel:+3812345678900"
+          url={getNumberUrl(phoneNumber)}
         />
         <PreheaderItem
           label="test@test.com"
           icon="envelope"
-          url="mailto:test@test.com"
+          url={`mailto:${email}`}
         />
         <PreheaderItem
-          label={'ООО "БлаБлаБла", Тольятти, ул. Строителей 87, оф. 78'}
+          label={address}
           icon="map-marker"
+          url="/contacts"
           right
         />
       </Preheader>
@@ -63,3 +67,4 @@ const HeaderContainer = styled(Container)`
   align-items: center;
   justify-content: space-between;
 `
+const getNumberUrl = number => 'tel:' + number.replace(/[+()\- ]/g, '')

@@ -30,7 +30,7 @@ const Title = styled.h2`
 const Text = styled.p`
   ${reset.p}
   color: ${colors.textLight};
-  width: 75%;
+  max-width: 600px;
   margin: 0 auto;
   text-align: center;
 `

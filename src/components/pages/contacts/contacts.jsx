@@ -1,12 +1,11 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 
-import PageTitle from 'components/page-title'
+import Breadcrumbs from 'components/breadcrumbs'
+import { Title } from 'components/meta'
 import Map from 'components/map'
 
 import ContactsSection from './contacts-section'
-
-const BREADCRUMBS = [{ label: 'Главная', url: '/' }]
 
 Contacts.propTypes = {
   companyName: PropTypes.string.isRequired,
@@ -19,7 +18,8 @@ Contacts.propTypes = {
 function Contacts ({ map, companyName, address, phoneNumbers, email }) {
   return (
     <Fragment>
-      <PageTitle title="Контакты" breadcrumbs={BREADCRUMBS} />
+      <Title title="Контакты" />
+      <Breadcrumbs list={['Контакты']} />
       <Map {...map} title="GRS Logistics" />
       <ContactsSection
         companyName={companyName}

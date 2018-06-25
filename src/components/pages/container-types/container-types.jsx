@@ -1,18 +1,20 @@
 import React, { Fragment } from 'react'
 
 import { Section, Grid } from 'components/layout'
-import PageTitle from 'components/page-title'
+import Breadcrumbs from 'components/breadcrumbs'
+import { Title } from 'components/meta'
 
 import ContainerItem from './container-item'
 
-const BREADCRUMBS = [{ label: 'Главная', url: '/' }]
+const GUTTERS = { vertical: 2 }
 
 function ContainerTypes () {
   return (
     <Fragment>
-      <PageTitle title="Типы контейнеров" breadcrumbs={BREADCRUMBS} />
+      <Title title="Типы контейнеров" />
+      <Breadcrumbs list={['Полезная информация', 'Типы контейнеров']} />
       <Section title="Стандартные контейнеры">
-        <Grid>
+        <Grid gutters={GUTTERS}>
           <ContainerItem
             image="/images/container-types/20-dfc.svg"
             shortName="20′ DC (DV, GP)"
@@ -80,7 +82,7 @@ function ContainerTypes () {
         </Grid>
       </Section>
       <Section title="Специальные контейнеры">
-        <Grid>
+        <Grid gutters={GUTTERS}>
           <ContainerItem
             image="/images/container-types/20-ot.svg"
             shortName="20′ OT"
@@ -148,7 +150,7 @@ function ContainerTypes () {
         </Grid>
       </Section>
       <Section title="Рефрижераторные контейнеры">
-        <Grid>
+        <Grid gutters={GUTTERS}>
           <ContainerItem
             image="/images/container-types/20-rc.svg"
             shortName="20′ RF"

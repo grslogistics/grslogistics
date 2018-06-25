@@ -8,12 +8,21 @@ IndexPage.propTypes = {
 }
 
 function IndexPage ({ data, ...props }) {
-  const { hero, about, services, pros, cta, posts } = data.file.childStaticYaml
+  const { hero, about, services, pros, cta, posts } = data.main
+  const servicesData = {
+    ...services,
+    list: data.services.edges.map(({ node }) => ({
+      title: node.title,
+      url: node.fields.slug,
+      icon: node.icon,
+      description: node.shortDescription
+    }))
+  }
   return (
     <Main
       hero={hero}
       about={about}
-      services={services}
+      services={servicesData}
       pros={pros}
       cta={cta}
       posts={posts}
@@ -26,31 +35,41 @@ export default IndexPage
 
 export const query = graphql`
   query IndexQuery {
-    file(name: { eq: "main" }, sourceInstanceName: { eq: "static" }) {
-      childStaticYaml {
-        hero {
+    main: staticYaml(fields: { filename: { eq: "main" } }) {
+      hero {
+        title
+        subtitle
+        button
+        image
+      }
+      about {
+        title
+        text
+      }
+      services {
+        title
+      }
+      pros {
+        title
+        list
+      }
+      cta {
+        text
+        button
+      }
+      posts {
+        title
+      }
+    }
+    services: allServicesYaml {
+      edges {
+        node {
           title
-          subtitle
-          button
-          image
-        }
-        about {
-          title
-          text
-        }
-        services {
-          title
-        }
-        pros {
-          title
-          list
-        }
-        cta {
-          text
-          button
-        }
-        posts {
-          title
+          icon
+          shortDescription
+          fields {
+            slug
+          }
         }
       }
     }

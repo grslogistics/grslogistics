@@ -49,6 +49,6 @@ const Inner = styled.div`
   height: 400px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
   justify-content: center;
 `

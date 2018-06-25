@@ -16,14 +16,14 @@ const GRID_SIZE = {
 }
 
 ServicesList.propTypes = {
-  services: PropTypes.array
+  list: PropTypes.array
 }
 
-function ServicesList ({ services }) {
+function ServicesList ({ list }) {
   return (
     <Fragment>
       <Grid>
-        {services.map((service, i) => (
+        {list.map((service, i) => (
           <Grid.Unit key={`${service.url}${i}`} size={GRID_SIZE}>
             <ServicesItem {...service} />
           </Grid.Unit>

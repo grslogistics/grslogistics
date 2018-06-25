@@ -1,10 +1,24 @@
+import React from 'react'
+import PropTypes from 'prop-types'
 import LinkComponent from 'gatsby-link'
 import styled from 'styled-components'
 
 import colors from 'style/colors'
 import reset from 'style/reset'
 
-const Link = styled(LinkComponent)`
+Link.propTypes = {
+  href: PropTypes.string
+}
+
+function Link ({ href, ...props }) {
+  return isSiteUrl(href) ? (
+    <RouteLink to={href} {...props} />
+  ) : (
+    <BrowserLink href={href} {...props} />
+  )
+}
+
+const BrowserLink = styled.a`
   ${reset.a};
   color: ${colors.primary};
   cursor: pointer;
@@ -16,4 +30,10 @@ const Link = styled(LinkComponent)`
   }
 `
 
+const RouteLink = BrowserLink.withComponent(LinkComponent)
+
 export default Link
+
+function isSiteUrl (url) {
+  return !/^(?:[a-z]+:)?\/\//.test(url)
+}

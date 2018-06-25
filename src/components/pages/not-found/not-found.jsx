@@ -4,21 +4,21 @@ import styled from 'styled-components'
 import reset from 'style/reset'
 import { Link } from 'components/ui'
 import { Section } from 'components/layout'
-import PageTitle from 'components/page-title'
-
-const BREADCRUMBS = [{ label: 'Главная', url: '/' }]
+import Breadcrumbs from 'components/breadcrumbs'
+import { Title as PageTitle } from 'components/meta'
 
 function NotFound () {
   return (
     <Fragment>
-      <PageTitle title="Страница не найдена" breadcrumbs={BREADCRUMBS} />
+      <PageTitle title="Страница не найдена" />
+      <Breadcrumbs list={['Страница не найдена']} />
       <Section>
         <Inner>
           <Title>404</Title>
           <Subtitle>Страница не найдена</Subtitle>
           <Message>
             Запрашиваемой страницы не существует. Вы можете вернуться на{' '}
-            <Link to="/">главную страницу</Link>.
+            <Link href="/">главную страницу</Link>.
           </Message>
         </Inner>
       </Section>

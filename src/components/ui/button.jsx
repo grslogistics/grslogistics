@@ -25,7 +25,7 @@ const themes = {
   regular: {
     background: '#fff',
     border: '#e9eaec',
-    color: colors.primary,
+    color: colors.text,
     ripple: '#bbb'
   },
   disabled: {
@@ -117,6 +117,7 @@ const size = prop => props => props.size[prop]
 const Btn = styled.button`
   ${reset.a};
   ${reset.button};
+  flex-shrink: 0;
   box-sizing: border-box;
   display: inline-block;
   position: relative;

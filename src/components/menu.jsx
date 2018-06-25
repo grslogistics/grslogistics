@@ -59,6 +59,7 @@ const iconStyle = { marginLeft: '0.5rem' }
 
 const DropdownList = styled.ul`
   ${reset.ul};
+  z-index: 2;
   position: absolute;
   left: 0;
   background: ${colors.background};
@@ -99,11 +100,12 @@ const MenuItem = styled.li`
   position: relative;
   margin-left: 1.5em;
   ${DropdownList} {
-    ${({ dropdownOnTop }) => (dropdownOnTop ? `bottom: 200%` : `top: 200%`)};
+    opacity: 0;
+    ${getPosition(200, 200)};
   }
   &:hover ${DropdownList} {
     pointer-events: initial;
-    ${({ dropdownOnTop }) => (dropdownOnTop ? `bottom: 95%` : `top: 95%`)};
+    ${getPosition(95, 95)};
     opacity: 1;
   }
 `
@@ -118,3 +120,8 @@ const MenuLink = styled(Link)`
     color: ${colors.primary};
   }
 `
+
+function getPosition (bottom, top) {
+  return ({ dropdownOnTop }) =>
+    dropdownOnTop ? `bottom: ${bottom}%;` : `top: ${top}%;`
+}

@@ -1,5 +1,4 @@
 // import 'init'
-import * as R from 'ramda'
 import React from 'react'
 import PropTypes from 'prop-types'
 // import Helmet from 'react-helmet'
@@ -26,14 +25,24 @@ Layout.propTypes = {
 }
 
 function Layout ({ children, data }) {
-  const { title, copyright, postsEnabled } = data.file.childStaticYaml
-  const menu = postsEnabled ? MENU : R.reject(R.propEq('url', '/news'), MENU)
+  const { title, copyright, postsEnabled } = data.site
+  const { phoneNumbers, address, email } = data.contacts
+  const services = data.services.edges.map(({ node }) => ({
+    label: node.title,
+    url: node.fields.slug
+  }))
+  const menu = getMenu(services, postsEnabled)
   return (
     <ThemeProvider theme={theme}>
       <TitleProvider prefix={title}>
         <AppContainer>
           <CurrentBreakpoint />
-          <Header menu={menu} />
+          <Header
+            menu={menu}
+            phoneNumber={phoneNumbers[0]}
+            email={email}
+            address={address}
+          />
           {children()}
           <Footer copyright={copyright} menu={menu} />
         </AppContainer>
@@ -46,10 +55,23 @@ export default Layout
 
 export const query = graphql`
   query SiteQuery {
-    file(name: { eq: "site" }, sourceInstanceName: { eq: "static" }) {
-      childStaticYaml {
-        title
-        copyright
+    site: staticYaml(fields: { filename: { eq: "site" } }) {
+      title
+      copyright
+    }
+    contacts: staticYaml(fields: { filename: { eq: "contacts" } }) {
+      phoneNumbers
+      address
+      email
+    }
+    services: allServicesYaml {
+      edges {
+        node {
+          title
+          fields {
+            slug
+          }
+        }
       }
     }
   }
@@ -62,38 +84,35 @@ const AppContainer = styled.div`
   padding-bottom: 80px;
 `
 
-const MENU = [
-  {
-    label: 'Главная',
-    url: '/'
-  },
-  {
-    label: 'О компании',
-    url: '/about'
-  },
-  {
-    groupLabel: 'Все услуги',
-    label: 'Услуги',
-    url: '/services',
-    children: [
-      { label: 'Перевозки морем', url: '/test' },
-      { label: 'Мультимодальные перевозки', url: '/test2' }
-    ]
-  },
-  {
-    groupLabel: 'Вся полезная информация',
-    label: 'Полезная информация',
-    children: [
-      { label: 'Перевозки морем', url: '/test' },
-      { label: 'Мультимодальные перевозки', url: '/test2' }
-    ]
-  },
-  {
-    label: 'Новости',
-    url: '/news'
-  },
-  {
-    label: 'Контакты',
-    url: '/contacts'
-  }
-]
+const getMenu = (services, postsEnabled) =>
+  [
+    {
+      label: 'Главная',
+      url: '/'
+    },
+    {
+      label: 'О компании',
+      url: '/about'
+    },
+    {
+      label: 'Услуги',
+      children: services
+    },
+    {
+      label: 'Полезная информация',
+      children: [
+        {
+          label: 'Типы контейнеров',
+          url: '/helpful-information/container-types'
+        }
+      ]
+    },
+    postsEnabled && {
+      label: 'Новости',
+      url: '/news'
+    },
+    {
+      label: 'Контакты',
+      url: '/contacts'
+    }
+  ].filter(Boolean)

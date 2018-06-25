@@ -3,7 +3,7 @@ export default {
   text: '#3b4550',
   black: '#181a1d',
   textLight: '#848994',
-  primary: '#50a2de',
+  primary: '#0E6AA4',
   shadow: 'rgba(151, 156, 162, 0.5)',
   gray: '#e9eaec',
   lightGray: '#f5f6f8',
