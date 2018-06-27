@@ -1,3 +1,5 @@
+const R = require('ramda')
+const fs = require('fs')
 const path = require('path')
 const { createFilePath } = require('gatsby-source-filesystem')
 
@@ -29,8 +31,14 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
   })
 }
 
-exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
+exports.onCreateNode = ({ node, getNode, getNodes, boundActionCreators }) => {
   const { createNodeField } = boundActionCreators
+
+  if (node.internal.owner === 'gatsby-transformer-yaml') {
+    const { dir } = getNode(node.parent)
+    addImageRelativePaths(node, node, dir, boundActionCreators)
+  }
+
   if (node.internal.type === 'ServicesYaml') {
     const slug = createFilePath({ node, getNode })
     createNodeField({
@@ -40,7 +48,7 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
     })
   }
 
-  if (node.internal.type === 'StaticYaml') {
+  if (node.internal.type === 'PagesYaml') {
     const { name } = getNode(node.parent)
     createNodeField({
       node,
@@ -52,15 +60,43 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
 
 module.exports.resolvableExtensions = () => ['.json']
 
-// exports.onCreatePage = ({ page, boundActionCreators }) => {
-//   const { createPage, deletePage } = boundActionCreators
-//   return new Promise(resolve => {
-//     const oldPage = Object.assign({}, page)
-//     page.path = _path => (_path === `/` ? _path : _path.replace(/\/$/, ``))
-//     if (page.path !== oldPage.path) {
-//       deletePage(oldPage)
-//       createPage(page)
-//     }
-//     resolve()
-//   })
-// }
+function addImageRelativePaths (
+  node,
+  data,
+  dirname,
+  boundActionCreators,
+  prefix = ''
+) {
+  Object.keys(data).forEach(key => {
+    const value = data[key]
+    if (isPlainObject(value)) {
+      addImageRelativePaths(
+        node,
+        value,
+        dirname,
+        boundActionCreators,
+        prefix + key + '_'
+      )
+    } else if (isImagePath(value)) {
+      const absolutePath = path.join(__dirname, 'static', value)
+      const relative = path.relative(dirname, absolutePath)
+      const { createNodeField } = boundActionCreators
+      createNodeField({
+        node,
+        name: prefix + key + '_relative',
+        value: relative
+      })
+    }
+  })
+}
+
+function isPlainObject (obj) {
+  return !Array.isArray(obj) && R.is(Object, obj)
+}
+
+function isImagePath (maybePath) {
+  if (typeof maybePath !== 'string') return false
+
+  const ext = path.extname(maybePath).toLowerCase()
+  return ['.jpeg', '.jpg', '.png', '.webp', '.tif', '.tiff'].includes(ext)
+}

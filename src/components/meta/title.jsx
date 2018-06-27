@@ -12,7 +12,7 @@ class Title extends Component {
   }
   componentDidMount () {
     const { title } = this.props
-    this.setTitle(title)
+    this.setTitle && this.setTitle(title)
   }
   render () {
     return (

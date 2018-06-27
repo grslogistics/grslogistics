@@ -10,7 +10,7 @@ HeroSection.propTypes = {
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
   button: PropTypes.string.isRequired,
-  image: PropTypes.string
+  image: PropTypes.object
 }
 
 function HeroSection ({ title, subtitle, button, image }) {

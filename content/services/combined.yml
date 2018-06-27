@@ -1,6 +1,7 @@
 title: Сборные грузы
 icon: cus-boxes
 shortDescription: Международные перевозки мелких грузов
+image: /assets/business-cargo-cargo-container.jpg
 description: |
   ## Контейнерные перевозки
 
@@ -24,6 +25,7 @@ steps:
   - Выдача груза на складе клиента
 additional:
   title: Возможность доставки сборных грузов
+  image: /assets/business-cargo-cargo-container.jpg
   text: |
     Доставка контейнеров возможна любым видом транспорта. Его выбор зависит от особенности груза и расстояния, на которое груз должен быть перевезен. От этого же зависит и цена на транспортировку груза
 cta:

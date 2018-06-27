@@ -55,11 +55,11 @@ export default Layout
 
 export const query = graphql`
   query SiteQuery {
-    site: staticYaml(fields: { filename: { eq: "site" } }) {
+    site: pagesYaml(fields: { filename: { eq: "site" } }) {
       title
       copyright
     }
-    contacts: staticYaml(fields: { filename: { eq: "contacts" } }) {
+    contacts: pagesYaml(fields: { filename: { eq: "contacts" } }) {
       phoneNumbers
       address
       email

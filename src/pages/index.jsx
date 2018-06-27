@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { getImageSharp } from 'utils'
 import Main from 'components/pages/main'
 
 IndexPage.propTypes = {
@@ -8,7 +9,15 @@ IndexPage.propTypes = {
 }
 
 function IndexPage ({ data, ...props }) {
-  const { hero, about, services, pros, cta, posts } = data.main
+  const { about, services, cta, posts } = data.main
+  const hero = {
+    ...data.main.hero,
+    image: getImageSharp('hero.image', data.main.fields)
+  }
+  const pros = {
+    ...data.main.pros,
+    image: getImageSharp('pros.image', data.main.fields)
+  }
   const servicesData = {
     ...services,
     list: data.services.edges.map(({ node }) => ({
@@ -35,7 +44,7 @@ export default IndexPage
 
 export const query = graphql`
   query IndexQuery {
-    main: staticYaml(fields: { filename: { eq: "main" } }) {
+    main: pagesYaml(fields: { filename: { eq: "main" } }) {
       hero {
         title
         subtitle
@@ -52,6 +61,7 @@ export const query = graphql`
       pros {
         title
         list
+        image
       }
       cta {
         text
@@ -59,6 +69,22 @@ export const query = graphql`
       }
       posts {
         title
+      }
+      fields {
+        hero_image_relative {
+          childImageSharp {
+            sizes {
+              ...GatsbyImageSharpSizes
+            }
+          }
+        }
+        pros_image_relative {
+          childImageSharp {
+            sizes {
+              ...GatsbyImageSharpSizes
+            }
+          }
+        }
       }
     }
     services: allServicesYaml {

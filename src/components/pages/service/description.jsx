@@ -7,12 +7,13 @@ import FeedbackButton from 'components/feedback-button'
 import Markdown from 'components/markdown'
 
 Description.propTypes = {
-  text: PropTypes.string.isRequired
+  text: PropTypes.string.isRequired,
+  image: PropTypes.object
 }
 
-function Description ({ text }) {
+function Description ({ text, image }) {
   return (
-    <Section image={'/assets/business-cargo-cargo-container.jpg'}>
+    <Section image={image}>
       <Inner>
         <Markdown source={text} />
         <Button primary>Оставить заявку</Button>

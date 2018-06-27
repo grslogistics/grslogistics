@@ -1,6 +1,7 @@
 title: Контейнерные перевозки
 icon: cus-container
 shortDescription: Международные перевозки контейнеров морским, жд- и автотранспортом
+image: /assets/business-cargo-cargo-container.jpg
 description: |
   ## Контейнерные перевозки
 
@@ -24,6 +25,7 @@ steps:
   - Выдача груза на складе клиента
 additional:
   title: Дополнительно
+  image: /assets/business-cargo-cargo-container.jpg
   text: |
     По желанию клиента мы можем предоставить дополнительно:
 

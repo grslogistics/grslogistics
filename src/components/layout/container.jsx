@@ -4,6 +4,7 @@ import breakpoint from 'styled-components-breakpoint'
 const Container = styled.div`
   margin: 0 1.5rem;
   min-width: 272px;
+  position: relative;
   ${breakpoint('l')`
     margin: 0 3.4375rem;
   `};

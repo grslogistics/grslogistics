@@ -14,7 +14,9 @@ Service.propTypes = {
   slug: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   steps: PropTypes.arrayOf(PropTypes.string),
+  image: PropTypes.object.isRequired,
   additional: PropTypes.shape({
+    image: PropTypes.object.isRequired,
     title: PropTypes.string,
     text: PropTypes.string
   }),
@@ -24,12 +26,12 @@ Service.propTypes = {
   })
 }
 
-function Service ({ title, slug, description, steps, additional, cta }) {
+function Service ({ title, slug, description, image, steps, additional, cta }) {
   return (
     <Fragment>
       <Title title={title} />
       <Breadcrumbs list={['Услуги', title]} />
-      <Description text={description} />
+      <Description text={description} image={image} />
       <Steps list={steps} />
       <Additional {...additional} />
       <Cta {...cta} />

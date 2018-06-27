@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 
 import colors from 'style/colors'
+import Image from 'components/image'
 import { Grid, Section } from 'components/layout'
 import { List } from 'components/ui'
 
@@ -13,10 +13,11 @@ const GRID_SIZES = {
 
 Pros.propTypes = {
   title: PropTypes.string.isRequired,
-  list: PropTypes.array.isRequired
+  list: PropTypes.array.isRequired,
+  image: PropTypes.object
 }
 
-function Pros ({ list, title }) {
+function Pros ({ list, title, image }) {
   return (
     <Section background={colors.lightGray} title={title}>
       <Grid>
@@ -28,7 +29,7 @@ function Pros ({ list, title }) {
           </List>
         </Grid.Unit>
         <Grid.Unit size={GRID_SIZES}>
-          <ImgMock />
+          <Image style={{ minHeight: 300 }} image={image} />
         </Grid.Unit>
       </Grid>
     </Section>
@@ -36,8 +37,3 @@ function Pros ({ list, title }) {
 }
 
 export default Pros
-
-const ImgMock = styled.div`
-  background-color: ${colors.primary};
-  height: 100%;
-`

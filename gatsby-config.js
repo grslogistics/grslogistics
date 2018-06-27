@@ -9,8 +9,8 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: `${__dirname}/content/static`,
-        name: 'static'
+        path: `${__dirname}/content/pages`,
+        name: 'pages'
       }
     },
     {
@@ -20,6 +20,13 @@ module.exports = {
         name: 'services'
       }
     },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/static/assets`,
+        name: 'assets'
+      }
+    },
     // {
     //   resolve: 'gatsby-source-filesystem',
     //   options: {
@@ -27,8 +34,10 @@ module.exports = {
     //     name: 'news'
     //   }
     // },
-    'gatsby-transformer-yaml',
     // 'gatsby-transformer-remark',
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-yaml',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
     'gatsby-plugin-resolve-src',

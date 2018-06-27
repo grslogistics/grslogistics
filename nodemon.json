@@ -1,0 +1,10 @@
+{
+  "watch": [
+    "gatsby-node.js",
+    "gatsby-config.js",
+    "gatsby-browser.js",
+    "static/admin/**/*.*",
+    "content/**/*.*"
+  ],
+  "ext": "js,jsx,yaml,json"
+}

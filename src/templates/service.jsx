@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { getImageSharp } from 'utils'
 import Service from 'components/pages/service'
 
 ServiceTemplate.propTypes = {
@@ -8,10 +9,16 @@ ServiceTemplate.propTypes = {
 }
 
 function ServiceTemplate ({ data }) {
-  const { title, description, steps, additional, fields, cta } = data.service
+  const { title, description, steps, fields, cta } = data.service
+  const image = getImageSharp('image', fields)
+  const additional = {
+    ...data.service.additional,
+    image: getImageSharp('additional.image', fields)
+  }
   return (
     <Service
       title={title}
+      image={image}
       slug={fields.slug}
       description={description}
       steps={steps}
@@ -35,6 +42,20 @@ export const query = graphql`
       }
       fields {
         slug
+        image_relative {
+          childImageSharp {
+            sizes {
+              ...GatsbyImageSharpSizes
+            }
+          }
+        }
+        additional_image_relative {
+          childImageSharp {
+            sizes {
+              ...GatsbyImageSharpSizes
+            }
+          }
+        }
       }
       cta {
         button

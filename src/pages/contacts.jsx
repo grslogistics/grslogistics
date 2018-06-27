@@ -14,7 +14,7 @@ function ContactsPage ({ data }) {
     map,
     phoneNumbers,
     email
-  } = data.file.childStaticYaml
+  } = data.file.childPagesYaml
   return (
     <Contacts
       companyName={companyName}
@@ -30,8 +30,8 @@ export default ContactsPage
 
 export const query = graphql`
   query ContactsQuery {
-    file(name: { eq: "contacts" }, sourceInstanceName: { eq: "static" }) {
-      childStaticYaml {
+    file(name: { eq: "contacts" }, sourceInstanceName: { eq: "pages" }) {
+      childPagesYaml {
         companyName
         address
         map {
