@@ -42,7 +42,8 @@ collections:
             widget: object
             fields:
               - { name: title, label: Заголовок }
-              - { name: list, label: Список }
+              - { name: list, label: Список, widget: list }
+              - { name: image, label: Изображение, widget: image }
           - name: cta
             label: Призыв к действию
             widget: object
@@ -59,6 +60,7 @@ collections:
         file: content/static/about.yml
         fields:
           - { name: title, label: Заголовок }
+          - { name: image, label: Изображение, widget: image }
           - name: body
             label: Текст
             widget: markdown
@@ -101,8 +103,10 @@ collections:
     label: Услуги
     folder: content/services
     fields:
-      - { name: slug, label: Name }
       - { name: title, label: Заголовок }
+      - { name: icon, label: Иконка }
+      - { name: shortDescription, label: Краткое описание }
+      - { name: image, label: Изображение, widget: image }
       - { name: description, label: Описание, widget: markdown }
       - { name: steps, label: Схема работы, widget: list }
       - name: additional
@@ -111,3 +115,10 @@ collections:
         fields:
           - { name: title, label: Заголовок }
           - { name: text, label: Текст }
+          - { name: image, label: Изображение, widget: image }
+      - name: cta
+        label: Призыв к действию
+        widget: object
+        fields:
+          - { name: text, label: Текст }
+          - { name: button, label: Кнопка }
