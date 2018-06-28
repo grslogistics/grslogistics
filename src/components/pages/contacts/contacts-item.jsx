@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import LinkComponent from 'gatsby-link'
 
+import { Link as LinkComponent } from 'components/ui'
 import colors from 'style/colors'
 import reset from 'style/reset'
 import Icon from 'components/icon'
@@ -41,7 +41,9 @@ const Link = styled(LinkComponent)`
   transition: all 0.2s;
   color: ${colors.textLight};
   font-size: 1.2rem;
+  border: none;
   &:hover {
+    border: none;
     cursor: pointer;
     color: ${colors.primary};
   }

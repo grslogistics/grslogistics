@@ -24,22 +24,19 @@ function Header ({ children, menu, phoneNumber, email, address }) {
   return (
     <Fragment>
       <Preheader>
-        <PreheaderItem
-          label={phoneNumber}
-          icon="phone-square"
-          url={getNumberUrl(phoneNumber)}
-        />
-        <PreheaderItem
-          label="test@test.com"
-          icon="envelope"
-          url={`mailto:${email}`}
-        />
-        <PreheaderItem
-          label={address}
-          icon="map-marker-alt"
-          url="/contacts"
-          right
-        />
+        <div>
+          <PreheaderItem
+            label={phoneNumber}
+            icon="phone-square"
+            url={getNumberUrl(phoneNumber)}
+          />
+          <PreheaderItem
+            label="test@test.com"
+            icon="envelope"
+            url={`mailto:${email}`}
+          />
+        </div>
+        <PreheaderItem label={address} icon="map-marker-alt" url="/contacts" />
       </Preheader>
       <HeaderWrapper>
         <HeaderContainer>

@@ -35,5 +35,6 @@ const RouteLink = BrowserLink.withComponent(LinkComponent)
 export default Link
 
 function isSiteUrl (url) {
-  return !/^(?:[a-z]+:)?\/\//.test(url)
+  const isMailOrTel = /^(mailto|tel):/.test(url)
+  return !isMailOrTel && !/^(?:[a-z]+:)?\/\//.test(url)
 }
