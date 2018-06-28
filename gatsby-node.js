@@ -1,7 +1,5 @@
 const R = require('ramda')
-const fs = require('fs')
 const path = require('path')
-const { createFilePath } = require('gatsby-source-filesystem')
 
 exports.createPages = async ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators
@@ -40,11 +38,11 @@ exports.onCreateNode = ({ node, getNode, getNodes, boundActionCreators }) => {
   }
 
   if (node.internal.type === 'ServicesYaml') {
-    const slug = createFilePath({ node, getNode })
+    const slug = node.slug.replace(/[^a-zA-Z0-9\-_]/g, '').toLowerCase()
     createNodeField({
       node,
       name: 'slug',
-      value: '/services' + slug.replace(/\/$/, ``)
+      value: '/services' + slug
     })
   }
 
