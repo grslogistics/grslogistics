@@ -30,6 +30,7 @@ function Dialog ({ renderTrigger, children: renderBody }) {
 export default Dialog
 
 const Backdrop = styled.div`
+  transform: translate3d(0, 0, 0);
   position: fixed;
   top: 0;
   right: 0;

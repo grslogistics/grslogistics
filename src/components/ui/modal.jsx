@@ -8,8 +8,8 @@ const Modal = styled.div`
   padding: 1.875rem;
   position: relative;
   box-sizing: border-box;
-  height: 100vh;
-  width: 100vh;
+  height: 100%;
+  width: 100%;
   transition: all 0.3s;
   background-color: #fff;
   overflow: hidden;

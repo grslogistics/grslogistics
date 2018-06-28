@@ -28,7 +28,9 @@ function FeedbackButton ({ children, ...props }) {
             Обратная связь
             <Close onClick={close} />
           </Modal.Header>
-          <FeedbackForm key={`feedback_${isOpened}`} />
+          <FormWrapper>
+            <FeedbackForm key={`feedback_${isOpened}`} />
+          </FormWrapper>
         </Inner>
       )}
     </Dialog>
@@ -42,11 +44,17 @@ const Close = styled(CloseIcon)`
   position: absolute;
   top: 50%;
   right: 1.875rem;
+  width: 1rem;
+  height: 1rem;
   transform: translateY(-50%);
 `
 
 const Inner = styled(Modal)`
   transform: translateY(${({ open }) => (open ? '0' : '100%')});
   opacity: ${({ open }) => (open ? 1 : 0)};
+`
+
+const FormWrapper = styled.div`
   overflow-y: auto;
+  overflow-x: hidden;
 `
