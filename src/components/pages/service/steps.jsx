@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import breakpoint from 'styled-components-breakpoint'
 
 import colors from 'style/colors'
 import reset from 'style/reset'
@@ -34,24 +35,46 @@ export default Steps
 const StepsList = styled.ul`
   ${reset.ul};
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   justify-content: center;
-  padding-bottom: 4em;
   font-size: 1.2rem;
+  max-width: 500px;
+  margin: 0 auto;
+  ${breakpoint('l')`
+    padding-bottom: 4em;
+    max-width: initial;
+    margin: 0;
+    align-items: center;
+    flex-direction: row;
+  `};
 `
 
 const StepDescription = styled.p`
-  position: absolute;
+  ${reset.p};
   font-size: 1rem;
-  width: 10em;
-  text-align: center;
-  transform: translateX(-50%);
-  left: 50%;
-  top: 100%;
+  max-height: 2.5em;
+  margin-left: 0.5em;
+  ${breakpoint('l')`
+    max-height: auto;
+    text-align: center;
+    margin: 1rem 0;
+    width: 10em;
+    position: absolute;
+    transform: translateX(-50%);
+    left: 50%;
+    top: 100%;
+  `};
 `
 
 const Inner = styled.div`
   position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  ${breakpoint('l')`
+    flex-direction: column;
+  `};
 `
 
 const StepItem = styled.li`
@@ -59,19 +82,28 @@ const StepItem = styled.li`
   position: relative;
   display: flex;
   align-items: center;
-  &:after {
-    display: block;
-    content: '';
-    border-top: 2px solid ${colors.gray};
-    width: 5em;
-    margin: 0 0.5em;
-  }
-  &:last-child:after {
-    display: none;
-  }
+  flex-direction: column;
+  margin-bottom: 1em;
+  ${breakpoint('l')`
+    margin-bottom: 0;
+    flex-direction: row;
+    &:after {
+      display: block;
+      content: '';
+      border: none;
+      border-top: 2px solid ${colors.gray};
+      height: auto;
+      width: 5em;
+      margin: 0 0.5em;
+    }
+    &:last-child:after {
+      display: none;
+    }
+  `};
 `
 
 const StepCount = styled.div`
+  box-sizing: border-box;
   color: ${colors.primary};
   border: 2px solid ${colors.primary};
   border-radius: 100%;
@@ -81,4 +113,5 @@ const StepCount = styled.div`
   width: 2.5em;
   height: 2.5em;
   font-weight: bold;
+  flex-shrink: 0;
 `

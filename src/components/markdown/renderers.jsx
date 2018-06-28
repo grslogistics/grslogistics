@@ -20,4 +20,6 @@ export {
 
 export const root = styled.div`
   font-size: 1.2rem;
+  margin-top: -1em;
+  margin-bottom: -1em;
 `

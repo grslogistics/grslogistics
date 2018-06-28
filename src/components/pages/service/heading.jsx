@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import breakpoint from 'styled-components-breakpoint'
 
 import reset from 'style/reset'
 import { Section } from 'components/layout'
@@ -30,8 +31,12 @@ const Inner = styled.div`
 
 const Title = styled.h2`
   ${reset.h};
-  font-size: 3rem;
+  font-size: 2rem;
   color: #fff;
   background: rgba(0, 0, 0, 0.5);
   padding: 0.5rem 1.5rem;
+  text-align: center;
+  ${breakpoint('m')`
+    font-size: 3rem;
+  `};
 `

@@ -11,7 +11,10 @@ Additional.propTypes = {
   image: PropTypes.object
 }
 
-const GRID_SIZES = 1 / 2
+const GRID_SIZES = {
+  xs: 1,
+  m: 1 / 2
+}
 
 function Additional ({ title, text, image }) {
   if (!text) return null
@@ -22,8 +25,10 @@ function Additional ({ title, text, image }) {
         <Grid.Unit size={GRID_SIZES}>
           <Markdown source={text} />
         </Grid.Unit>
-        <Grid.Unit size={GRID_SIZES}>
-          <Image image={image} style={{ minHeight: 300 }} />
+        <Grid.Unit size={GRID_SIZES} visible={{ xs: false, m: true }}>
+          <div style={{ width: '100%' }}>
+            <Image image={image} />
+          </div>
         </Grid.Unit>
       </Grid>
     </Section>
