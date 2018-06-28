@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { Collapse } from 'react-collapse'
 import breakpoint from 'styled-components-breakpoint'
 import { Portal } from 'react-portal'
+import Link from 'gatsby-link'
 
 import Flag from 'components/flag'
 import FaIcon from 'components/icon'
@@ -25,36 +26,42 @@ export default class MobileMenu extends Component {
       })
     )
   }
-  renderSubmenuItem = ({ label, url }, i) => {
+  renderSubmenuItem = toggleMenu => ({ label, url }, i) => {
     const key = `${i}:${url}:${label}`
     return (
       <SubmenuItem key={key}>
-        <SubmenuLink href={url}>{label}</SubmenuLink>
+        <SubmenuLink to={url} onClick={toggleMenu}>
+          {label}
+        </SubmenuLink>
       </SubmenuItem>
     )
   }
-  renderItem = ({ label, url, children }, i) => {
+  renderItem = toggleMenu => ({ label, url, children }, i) => {
     const key = `${i}:${url}:${label}`
     return children ? (
       <Flag key={key}>
         {({ isOn, toggle }) => (
           <MenuItem>
-            <MenuLink href="#" open={isOn} onClick={toggle}>
+            <MenuBrowserLink href="#" open={isOn} onClick={toggle}>
               {label}
               <Icon icon="angle-right" open={isOn} />
-            </MenuLink>
+            </MenuBrowserLink>
             <Collapse
               isOpened={isOn}
               springConfig={{ stiffness: 300, damping: 30 }}
             >
-              <SubmenuList>{children.map(this.renderSubmenuItem)}</SubmenuList>
+              <SubmenuList>
+                {children.map(this.renderSubmenuItem(toggleMenu))}
+              </SubmenuList>
             </Collapse>
           </MenuItem>
         )}
       </Flag>
     ) : (
       <MenuItem key={key}>
-        <MenuLink href={url}>{label}</MenuLink>
+        <MenuLink to={url} onClick={toggleMenu}>
+          {label}
+        </MenuLink>
       </MenuItem>
     )
   }
@@ -62,7 +69,7 @@ export default class MobileMenu extends Component {
     const { items } = this.props
     return (
       <Flag>
-        {({ isOn, setOn, setOff }) => (
+        {({ isOn, setOn, setOff, toggle }) => (
           <Fragment>
             <Button onClick={setOn}>
               <Icon icon="bars" size="lg" />
@@ -71,7 +78,7 @@ export default class MobileMenu extends Component {
               <Backdrop onClick={setOff} open={isOn}>
                 <MenuWrapper open={isOn}>
                   <MenuList onClick={stopPropagation}>
-                    {items.map(this.renderItem)}
+                    {items.map(this.renderItem(toggle))}
                   </MenuList>
                 </MenuWrapper>
               </Backdrop>
@@ -122,7 +129,7 @@ const SubmenuItem = styled.li`
   ${reset.li};
 `
 
-const SubmenuLink = styled.a`
+const SubmenuLink = styled(Link)`
   ${reset.a};
   display: block;
   color: #9fa4af;
@@ -159,7 +166,7 @@ const MenuItem = styled.li`
   ${reset.li};
 `
 
-const MenuLink = styled.a`
+const MenuLink = styled(Link)`
   ${reset.a};
   display: flex;
   justify-content: space-between;
@@ -176,3 +183,5 @@ const MenuLink = styled.a`
     color: #f5f6f8;
   }
 `
+
+const MenuBrowserLink = MenuLink.withComponent('a')

@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import colors from 'style/colors'
+import LinkComponent from 'gatsby-link'
 
+import colors from 'style/colors'
 import Icon from 'components/icon'
 import reset from 'style/reset'
 
@@ -26,7 +27,7 @@ function PreheaderItem ({ label, icon, url, right }) {
 
 export default PreheaderItem
 
-const Link = styled.a`
+const Link = styled(LinkComponent)`
   ${reset.a};
   display: inline-flex;
   align-items: center;

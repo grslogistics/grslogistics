@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import breakpoint from 'styled-components-breakpoint'
+import LinkComponent from 'gatsby-link'
 
 import colors from 'style/colors'
 import reset from 'style/reset'
@@ -77,7 +78,7 @@ const Text = styled.p`
   transition: all 0.2s;
 `
 
-const Container = styled.a`
+const Container = styled(LinkComponent)`
   ${reset.a};
   position: relative;
   padding: 1rem;

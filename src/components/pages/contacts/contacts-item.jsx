@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import LinkComponent from 'gatsby-link'
 
 import colors from 'style/colors'
 import reset from 'style/reset'
@@ -33,7 +34,7 @@ const IconContainer = styled.span`
   width: 2.5rem;
 `
 
-const Link = styled.a`
+const Link = styled(LinkComponent)`
   ${reset.a};
   display: flex;
   align-items: center;

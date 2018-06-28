@@ -35,7 +35,7 @@ class Breadcrumbs extends Component {
       <Wrapper>
         <Container>
           <BreadcrumbsList>
-            <BreadcrumbsItem>
+            <BreadcrumbsItem className="breadcrumbs-main">
               <Link href="/">Главная</Link>
             </BreadcrumbsItem>
             {list.map(this.renderBreadcrumb)}
@@ -68,10 +68,6 @@ const Container = styled(ContainerComponent)`
 
 const BreadcrumbsList = styled.ul`
   ${reset.ul};
-  display: none;
-  ${breakpoint('m')`
-    display: block;
-  `};
   font-size: 0.75rem;
 `
 
@@ -86,5 +82,11 @@ const BreadcrumbsItem = styled.li`
   }
   &:last-child:after {
     display: none;
+  }
+  &.breadcrumbs-main {
+    display: none;
+    ${breakpoint('m')`
+      display: inline-block;
+    `};
   }
 `
