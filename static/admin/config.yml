@@ -6,19 +6,6 @@ media_folder: static/assets
 public_folder: /assets
 
 collections:
-  - name: settings
-    label: Настройки
-    delete: false
-    editor:
-      preview: false
-    files:
-      - label: Сайт
-        name: site
-        file: content/static/site.yml
-        fields:
-          - { name: title, label: Название сайта }
-          - { name: copyright, label: Копирайт }
-          - { name: postsEnabled, label: Включить новости, widget: boolean }
   - name: pages
     label: Страницы
     delete: false

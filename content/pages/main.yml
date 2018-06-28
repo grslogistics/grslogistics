@@ -22,7 +22,8 @@ pros:
   image: /assets/business-cargo-cargo-container.jpg
 cta:
   button: Оставить заявку
-  text: Хотите работать с нами? Оставьте заявку и наш менеджер свяжется с Вами для уточнения деталей.
+  title: Хотите работать с нами?
+  text: Оставьте заявку на бесплатный просчет
 posts:
   title: Последние новости
 services:

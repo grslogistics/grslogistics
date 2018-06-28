@@ -25,7 +25,7 @@ Layout.propTypes = {
 }
 
 function Layout ({ children, data }) {
-  const { title, copyright, postsEnabled } = data.site
+  const { title, copyright, postsEnabled } = data.site.siteMetadata
   const { phoneNumbers, address, email } = data.contacts
   const services = data.services.edges.map(({ node }) => ({
     label: node.title,
@@ -55,9 +55,11 @@ export default Layout
 
 export const query = graphql`
   query SiteQuery {
-    site: pagesYaml(fields: { filename: { eq: "site" } }) {
-      title
-      copyright
+    site {
+      siteMetadata {
+        title
+        copyright
+      }
     }
     contacts: pagesYaml(fields: { filename: { eq: "contacts" } }) {
       phoneNumbers

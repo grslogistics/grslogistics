@@ -1,4 +1,8 @@
 module.exports = {
+  siteMetadata: {
+    title: 'GRS logistics',
+    copyright: '© 2014 Grs Logistics'
+  },
   plugins: [
     {
       resolve: 'gatsby-plugin-react-svg',
