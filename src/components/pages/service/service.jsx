@@ -8,6 +8,7 @@ import Cta from 'components/call-to-action'
 import Description from './description'
 import Steps from './steps'
 import Additional from './additional'
+import Heading from './heading'
 
 Service.propTypes = {
   title: PropTypes.string.isRequired,
@@ -31,7 +32,8 @@ function Service ({ title, slug, description, image, steps, additional, cta }) {
     <Fragment>
       <Title title={title} />
       <Breadcrumbs list={['Услуги', title]} />
-      <Description text={description} image={image} />
+      <Heading title={title} image={image} />
+      <Description text={description} />
       <Steps list={steps} />
       <Additional {...additional} />
       <Cta {...cta} />

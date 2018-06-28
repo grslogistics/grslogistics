@@ -1,0 +1,37 @@
+import React from 'react'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
+
+import reset from 'style/reset'
+import { Section } from 'components/layout'
+
+Heading.propTypes = {
+  title: PropTypes.string.isRequired,
+  image: PropTypes.object.isRequired
+}
+
+function Heading ({ title, image }) {
+  return (
+    <Section image={image}>
+      <Inner>
+        <Title>{title}</Title>
+      </Inner>
+    </Section>
+  )
+}
+
+export default Heading
+
+const Inner = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+const Title = styled.h2`
+  ${reset.h};
+  font-size: 3rem;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0.5rem 1.5rem;
+`
