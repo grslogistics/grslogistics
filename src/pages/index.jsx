@@ -64,6 +64,7 @@ export const query = graphql`
         image
       }
       cta {
+        title
         text
         button
       }

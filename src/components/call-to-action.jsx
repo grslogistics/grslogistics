@@ -9,15 +9,19 @@ import { Section } from 'components/layout'
 import FeedbackButton from 'components/feedback-button'
 
 CallToAction.propTypes = {
+  title: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   button: PropTypes.string.isRequired
 }
 
-function CallToAction ({ text, button }) {
+function CallToAction ({ text, title, button }) {
   return (
     <Container background={colors.primary}>
       <Inner>
-        <Title>{text}</Title>
+        <div>
+          <Title>{title}</Title>
+          <Text>{text}</Text>
+        </div>
         <FeedbackButton white>{button}</FeedbackButton>
       </Inner>
     </Container>
@@ -32,12 +36,11 @@ const Container = styled(Section)`
 
 const Inner = styled.div`
   display: flex;
+  align-items: center;
   justify-content: space-between;
   flex-direction: column;
-  align-items: center;
-  ${breakpoint('l')`
+  ${breakpoint('m')`
     flex-direction: row;
-    text-aling: left;
   `};
 `
 
@@ -45,8 +48,19 @@ const Title = styled.h2`
   ${reset.h};
   font-size: 2rem;
   color: #fff;
+  text-align: center;
+  ${breakpoint('m')`
+    text-align: left;
+  `};
+`
+
+const Text = styled.p`
+  ${reset.p};
+  color: #fff;
   margin-bottom: 2rem;
-  ${breakpoint('l')`
+  text-align: center;
+  ${breakpoint('m')`
+    text-align: left;
     margin-bottom: 0;
   `};
 `

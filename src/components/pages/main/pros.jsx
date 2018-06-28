@@ -28,8 +28,10 @@ function Pros ({ list, title, image }) {
             ))}
           </List>
         </Grid.Unit>
-        <Grid.Unit size={GRID_SIZES}>
-          <Image style={{ minHeight: 300 }} image={image} />
+        <Grid.Unit size={GRID_SIZES} visible={{ xs: false, m: true }}>
+          <div style={{ width: '100%' }}>
+            <Image image={image} />
+          </div>
         </Grid.Unit>
       </Grid>
     </Section>

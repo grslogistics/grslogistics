@@ -17,7 +17,7 @@ Grid.propTypes = {
   children: PropTypes.any
 }
 
-function Grid ({ gutters: guttersProp, children, ...props }) {
+function Grid ({ gutters: guttersProp, center, children, ...props }) {
   const gutters = getGutters(guttersProp)
   const gridMargin = gutters.horizontal * -(gutters.horizontal / 2) + 'rem'
   const style = {

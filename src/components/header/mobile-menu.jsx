@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { Portal } from 'react-portal'
+import { Collapse } from 'react-collapse'
 import breakpoint from 'styled-components-breakpoint'
+import { Portal } from 'react-portal'
 
 import Flag from 'components/flag'
 import FaIcon from 'components/icon'
@@ -42,11 +43,12 @@ export default class MobileMenu extends Component {
               {label}
               <Icon icon="angle-right" open={isOn} />
             </MenuLink>
-            <SubmenuOuter>
-              <SubmenuList open={isOn}>
-                {children.map(this.renderSubmenuItem)}
-              </SubmenuList>
-            </SubmenuOuter>
+            <Collapse
+              isOpened={isOn}
+              springConfig={{ stiffness: 300, damping: 30 }}
+            >
+              <SubmenuList>{children.map(this.renderSubmenuItem)}</SubmenuList>
+            </Collapse>
           </MenuItem>
         )}
       </Flag>
@@ -82,7 +84,7 @@ export default class MobileMenu extends Component {
 }
 
 const Icon = styled(FaIcon)`
-  transition: all 0.2s;
+  transition: all 0.1s;
   transform: rotateZ(${({ open }) => (open ? '90deg' : '0')});
 `
 
@@ -109,15 +111,10 @@ const Backdrop = styled.div`
   `};
 `
 
-const SubmenuOuter = styled.div`
-  overflow: hidden;
-`
-
 const SubmenuList = styled.ul`
   ${reset.ul};
   position: relative;
-  margin-top: ${({ open }) => (open ? '0' : '-100%')};
-  transition: all 0.3s;
+  transition: all 0.2s;
   background-color: #121314;
 `
 
@@ -131,6 +128,12 @@ const SubmenuLink = styled.a`
   color: #9fa4af;
   padding: 1.125rem 1.5rem 1.125rem 2.8rem;
   border-bottom: 1px solid #25262a;
+  border-top: 1px solid #25262a;
+  margin-bottom: -1px;
+  cursor: pointer;
+  &:hover {
+    color: #f5f6f8;
+  }
 `
 
 const MenuWrapper = styled.div`
@@ -141,6 +144,7 @@ const MenuWrapper = styled.div`
   width: 80vw;
   height: 100vh;
   overflow-y: auto;
+  background-color: #191a1e;
   ${breakpoint('m')`
     width: 50vw;
   `};
@@ -148,8 +152,7 @@ const MenuWrapper = styled.div`
 
 const MenuList = styled.ul`
   ${reset.ul};
-  min-height: 100%;
-  background-color: #191a1e;
+  padding-bottom: 4rem;
 `
 
 const MenuItem = styled.li`
@@ -164,6 +167,12 @@ const MenuLink = styled.a`
   color: ${({ open }) => (open ? '#f5f6f8' : '#848994')};
   padding: 1.125rem 1.5rem;
   border-bottom: 1px solid #25262a;
+  border-top: 1px solid #25262a;
+  margin-bottom: -1px;
   transition: all 0.2s;
   background-color: ${({ open }) => (open ? '#121314' : 'transparent')};
+  cursor: pointer;
+  &:hover {
+    color: #f5f6f8;
+  }
 `

@@ -24,7 +24,7 @@ function AccordionItem ({ title, children }) {
           </Title>
           <Collapse
             isOpened={isOn}
-            springConfig={{ stiffness: 300, damping: 20 }}
+            springConfig={{ stiffness: 300, damping: 40 }}
           >
             <Body>{children}</Body>
           </Collapse>

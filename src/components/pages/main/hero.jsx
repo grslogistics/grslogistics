@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import breakpoint from 'styled-components-breakpoint'
 
 import reset from 'style/reset'
 import FeedbackButton from 'components/feedback-button'
@@ -49,6 +50,9 @@ const Inner = styled.div`
   height: 400px;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
   justify-content: center;
+  align-items: center;
+  ${breakpoint('m')`
+    align-items: flex-end;
+  `};
 `

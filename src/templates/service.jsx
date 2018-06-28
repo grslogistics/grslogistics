@@ -60,6 +60,7 @@ export const query = graphql`
       cta {
         button
         text
+        title
       }
     }
   }

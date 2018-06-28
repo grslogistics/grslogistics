@@ -25,7 +25,7 @@ const themes = {
   regular: {
     background: '#fff',
     border: '#e9eaec',
-    color: colors.text,
+    color: colors.primary,
     ripple: '#bbb'
   },
   disabled: {

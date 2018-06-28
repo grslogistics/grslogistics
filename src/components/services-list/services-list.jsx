@@ -12,7 +12,8 @@ import ServicesItem from './services-item'
 const GRID_SIZE = {
   xs: 1,
   s: 1 / 2,
-  m: 1 / 5
+  m: 1 / 3,
+  l: 1 / 6
 }
 
 ServicesList.propTypes = {
@@ -22,7 +23,7 @@ ServicesList.propTypes = {
 function ServicesList ({ list }) {
   return (
     <Fragment>
-      <Grid>
+      <Grid horizontalAlign="center">
         {list.map((service, i) => (
           <Grid.Unit key={`${service.url}${i}`} size={GRID_SIZE}>
             <ServicesItem {...service} />
