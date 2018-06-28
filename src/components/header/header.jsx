@@ -36,7 +36,7 @@ function Header ({ children, menu, phoneNumber, email, address }) {
         />
         <PreheaderItem
           label={address}
-          icon="map-marker"
+          icon="map-marker-alt"
           url="/contacts"
           right
         />

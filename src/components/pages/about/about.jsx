@@ -13,26 +13,28 @@ About.propTypes = {
   image: PropTypes.object
 }
 
+const GRID_SIZES = {
+  xs: 1,
+  m: 1 / 2
+}
+
 function About ({ title, text, image }) {
   return (
     <Fragment>
       <Title title={title} />
       <Breadcrumbs list={[title]} />
-      <Section>
+      <Section title={title}>
         <Grid>
           <Grid.Unit size={GRID_SIZES}>
-            <h2>{title}</h2>
             <Markdown source={text} />
           </Grid.Unit>
           <Grid.Unit size={GRID_SIZES}>
-            <Image style={{ minHeight: 300 }} image={image} />
+            <Image image={image} />
           </Grid.Unit>
         </Grid>
       </Section>
     </Fragment>
   )
 }
-
-const GRID_SIZES = 1 / 2
 
 export default About

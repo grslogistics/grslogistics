@@ -6,6 +6,7 @@ import boxes from './boxes'
 import warehouse from './warehouse'
 import plane from './plane'
 import clipboard from './clipboard'
+import grs from './grs'
 
 export default [
   ship,
@@ -15,5 +16,6 @@ export default [
   box,
   warehouse,
   plane,
-  clipboard
+  clipboard,
+  grs
 ]

@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 
-import reset from 'style/reset'
 import FeedbackForm from 'components/feedback-form'
 import { Section, Grid } from 'components/layout'
 
@@ -15,15 +13,20 @@ ContactsSection.propTypes = {
   email: PropTypes.string.isRequired
 }
 
+const GRID_SIZES = {
+  xs: 1,
+  m: 1 / 2
+}
+
 function ContactsSection ({ companyName, address, phoneNumbers, email }) {
   return (
     <Section title="Свяжитесь с нами">
-      <Grid>
-        <Grid.Unit size={1 / 2}>
+      <Grid reverse={{ xs: true, m: false }}>
+        <Grid.Unit size={GRID_SIZES}>
           <FeedbackForm />
         </Grid.Unit>
-        <Grid.Unit size={1 / 2}>
-          <CompanyName>{companyName}</CompanyName>
+        <Grid.Unit size={GRID_SIZES}>
+          <ContactsItem icon="cus-grs" label={companyName} />
           <ContactsItem icon="map-marker-alt" label={address} />
           {phoneNumbers.map((number, i) => {
             const key = i + '@' + number
@@ -46,10 +49,3 @@ function ContactsSection ({ companyName, address, phoneNumbers, email }) {
 export default ContactsSection
 
 const getNumberUrl = number => 'tel:' + number.replace(/[()\- ]/g, '')
-
-const CompanyName = styled.h4`
-  ${reset.h};
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  padding-left: 2.5rem;
-`
