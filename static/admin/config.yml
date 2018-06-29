@@ -93,6 +93,7 @@ collections:
     label: Услуги
     folder: content/services
     create: true
+    extension: yml
     fields:
       - name: slug
         label: Url
