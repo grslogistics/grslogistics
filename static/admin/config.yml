@@ -110,11 +110,12 @@ collections:
         widget: object
         fields:
           - { name: title, label: Заголовок }
-          - { name: text, label: Текст }
+          - { name: text, label: Текст, widget: markdown }
           - { name: image, label: Изображение, widget: image }
       - name: cta
         label: Призыв к действию
         widget: object
         fields:
+          - { name: title, label: Заголовок }
           - { name: text, label: Текст }
           - { name: button, label: Кнопка }
