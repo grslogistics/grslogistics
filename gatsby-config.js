@@ -45,6 +45,7 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
     'gatsby-plugin-resolve-src',
+    'gatsby-plugin-netlify-cache',
     {
       resolve: 'gatsby-plugin-netlify-cms',
       options: {
