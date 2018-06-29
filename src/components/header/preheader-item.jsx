@@ -31,7 +31,7 @@ const Link = styled(LinkComponent)`
   display: inline-flex;
   align-items: center;
   transition: all 0.2s;
-  color: ${colors.textLight};
+  color: ${colors.textLight} !important;
   font-size: 0.75rem;
   border: none;
   margin-right: 2.25rem;
@@ -40,7 +40,7 @@ const Link = styled(LinkComponent)`
   }
   &:hover {
     cursor: pointer;
-    color: ${colors.primary};
+    color: ${colors.primary} !important;
     border: none;
   }
 `
