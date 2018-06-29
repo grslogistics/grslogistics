@@ -33,7 +33,7 @@ export default ServiceTemplate
 export const query = graphql`
   query ServiceQuery($slug: String!) {
     service: servicesYaml(fields: { slug: { eq: $slug } }) {
-      title
+      title: heading
       description
       steps
       additional {

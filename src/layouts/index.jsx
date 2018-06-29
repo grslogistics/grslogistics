@@ -56,7 +56,7 @@ export const query = graphql`
     services: allServicesYaml {
       edges {
         node {
-          title
+          title: heading
           fields {
             slug
           }

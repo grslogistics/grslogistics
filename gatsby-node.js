@@ -38,7 +38,7 @@ exports.onCreateNode = ({ node, getNode, getNodes, boundActionCreators }) => {
   }
 
   if (node.internal.type === 'ServicesYaml') {
-    const slug = node.slug.replace(/[^a-zA-Z0-9\-_]/g, '').toLowerCase()
+    const slug = node.title.replace(/[^a-zA-Z0-9\-_]/g, '').toLowerCase()
     createNodeField({
       node,
       name: 'slug',
