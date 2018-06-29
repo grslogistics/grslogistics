@@ -97,7 +97,7 @@ collections:
       - name: slug
         label: Url
         pattern:
-          - "[a-z0-9-_]{5, }"
+          - '[a-z0-9\-_]{5,}'
           - "Url должен быть минимум 5 символов длинной и содержать только следующие символы: a-z 0-9 - _"
       - { name: title, label: Заголовок }
       - { name: icon, label: Иконка }
