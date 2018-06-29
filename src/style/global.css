@@ -1,35 +1,7 @@
-@font-face {
-  font-family: 'PT Sans';
-  src: url('/fonts/pt-sans.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'PT Sans';
-  src: url('/fonts/pt-sans-italic.woff') format('woff');
-  font-weight: normal;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'PT Sans';
-  src: url('/fonts/pt-sans-bold.woff') format('woff');
-  font-weight: bold;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'PT Sans';
-  src: url('/fonts/pt-sans-bold-italic.woff') format('woff');
-  font-weight: bold;
-  font-style: italic;
-}
-
 html,
 body {
   font-size: 16px;
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'PT Sans', 'Helvetica Neue', Helvetica, sans-serif;
   color: #3b4550;
   margin: 0;
   padding: 0;

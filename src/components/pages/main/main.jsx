@@ -8,7 +8,7 @@ import About from './about'
 import Hero from './hero'
 import Services from './services'
 import Pros from './pros'
-import RecentPosts from './recent-posts'
+// import RecentPosts from './recent-posts'
 
 Main.propTypes = {
   postsEnabled: PropTypes.bool.isRequired,
@@ -29,7 +29,6 @@ function Main ({ hero, services, about, pros, cta, posts, postsEnabled }) {
       <Services {...services} />
       <Pros {...pros} />
       <CallToAction {...cta} />
-      {postsEnabled && <RecentPosts {...posts} />}
     </Fragment>
   )
 }

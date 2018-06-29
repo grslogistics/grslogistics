@@ -39,6 +39,7 @@ collections:
             label: Призыв к действию
             widget: object
             fields:
+              - { name: title, label: Заголовок }
               - { name: text, label: Текст }
               - { name: button, label: Кнопка заказа }
           - name: posts
@@ -65,8 +66,6 @@ collections:
           - name: phoneNumbers
             label: Телефонные номера
             widget: list
-            field:
-              { name: number, label: Номер, widget: string }
           - name: map
             label: Карта
             widget: object
@@ -83,13 +82,13 @@ collections:
                 label: Масштаб
                 widget: number
                 valueType: float
-  - name: news
-    label: Новости
-    folder: content/news
-    fields:
-      - { name: date, label: Дата, widget: date }
-      - { name: title, label: Заголовок }
-      - { name: body, label: Текст, widget: markdown }
+  # - name: news
+  #   label: Новости
+  #   folder: content/news
+  #   fields:
+  #     - { name: date, label: Дата, widget: date }
+  #     - { name: title, label: Заголовок }
+  #     - { name: body, label: Текст, widget: markdown }
   - name: services
     label: Услуги
     folder: content/services
