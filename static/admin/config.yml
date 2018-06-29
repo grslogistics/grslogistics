@@ -12,7 +12,7 @@ collections:
     files:
       - name: main
         label: Главная
-        file: content/static/main.yml
+        file: content/pages/main.yml
         fields:
           - name: hero
             label: Hero
@@ -48,7 +48,7 @@ collections:
               - { name: title, label: Заголовок }
       - name: about
         label: О компании
-        file: content/static/about.yml
+        file: content/pages/about.yml
         fields:
           - { name: title, label: Заголовок }
           - { name: image, label: Изображение, widget: image }
@@ -57,7 +57,7 @@ collections:
             widget: markdown
       - name: contacts
         label: Контакты
-        file: content/static/contacts.yml
+        file: content/pages/contacts.yml
         fields:
           - { name: companyName, label: Название компании }
           - { name: address, label: Адрес }
@@ -98,7 +98,7 @@ collections:
       - name: slug
         label: Url
         pattern:
-          - "[a-z0-9\-_]{5, }"
+          - "[a-z0-9-_]{5, }"
           - "Url должен быть минимум 5 символов длинной и содержать только следующие символы: a-z 0-9 - _"
       - { name: title, label: Заголовок }
       - { name: icon, label: Иконка }
