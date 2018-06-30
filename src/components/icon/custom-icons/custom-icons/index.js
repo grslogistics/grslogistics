@@ -7,6 +7,9 @@ import warehouse from './warehouse'
 import plane from './plane'
 import clipboard from './clipboard'
 import grs from './grs'
+import multimodal from './multimodal'
+import train from './train'
+import truck from './truck'
 
 export default [
   ship,
@@ -17,5 +20,8 @@ export default [
   warehouse,
   plane,
   clipboard,
-  grs
+  grs,
+  multimodal,
+  train,
+  truck
 ]
