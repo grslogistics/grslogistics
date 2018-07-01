@@ -53,7 +53,7 @@ export const query = graphql`
       address
       email
     }
-    services: allServicesYaml {
+    services: allServicesYaml(sort: { fields: [sort] }) {
       edges {
         node {
           title: heading

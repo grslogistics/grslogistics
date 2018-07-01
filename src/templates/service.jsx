@@ -44,14 +44,14 @@ export const query = graphql`
         slug
         image_relative {
           childImageSharp {
-            sizes {
+            sizes(quality: 80) {
               ...GatsbyImageSharpSizes
             }
           }
         }
         additional_image_relative {
           childImageSharp {
-            sizes {
+            sizes(quality: 80) {
               ...GatsbyImageSharpSizes
             }
           }

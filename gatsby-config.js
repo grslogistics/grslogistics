@@ -1,3 +1,5 @@
+const proxy = require('http-proxy-middleware')
+
 module.exports = {
   siteMetadata: {
     title: 'GRS logistics',
@@ -31,14 +33,6 @@ module.exports = {
         name: 'assets'
       }
     },
-    // {
-    //   resolve: 'gatsby-source-filesystem',
-    //   options: {
-    //     path: `${__dirname}/content/news`,
-    //     name: 'news'
-    //   }
-    // },
-    // 'gatsby-transformer-remark',
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     'gatsby-transformer-yaml',
@@ -52,5 +46,16 @@ module.exports = {
         modulePath: `${__dirname}/src/cms/cms.js`
       }
     }
-  ]
+  ],
+  developMiddleware: app => {
+    app.use(
+      '/.netlify/functions/',
+      proxy({
+        target: 'http://localhost:9000',
+        pathRewrite: {
+          '/.netlify/functions/': ''
+        }
+      })
+    )
+  }
 }

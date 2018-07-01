@@ -74,21 +74,21 @@ export const query = graphql`
       fields {
         hero_image_relative {
           childImageSharp {
-            sizes {
+            sizes(quality: 80) {
               ...GatsbyImageSharpSizes
             }
           }
         }
         pros_image_relative {
           childImageSharp {
-            sizes {
+            sizes(quality: 80) {
               ...GatsbyImageSharpSizes
             }
           }
         }
       }
     }
-    services: allServicesYaml {
+    services: allServicesYaml(sort: { fields: [sort] }) {
       edges {
         node {
           title: heading

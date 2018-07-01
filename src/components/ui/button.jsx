@@ -76,15 +76,8 @@ const sizes = {
   }
 }
 
-function Button ({
-  children,
-  icon,
-  disabled,
-  fullWidth,
-  loading,
-  href,
-  ...props
-}) {
+function Button (props) {
+  const { children, icon, disabled, fullWidth, loading, href } = props
   const ButtonComponent = href ? BtnLink : Btn
   const theme = themes[getButtonTheme(props)]
   const size = sizes[getButtonSize(props)]

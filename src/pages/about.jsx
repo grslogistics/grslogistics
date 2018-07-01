@@ -26,7 +26,7 @@ export const query = graphql`
       fields {
         image_relative {
           childImageSharp {
-            sizes {
+            sizes(quality: 80) {
               ...GatsbyImageSharpSizes
             }
           }

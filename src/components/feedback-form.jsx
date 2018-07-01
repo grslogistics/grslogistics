@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Form, Formik, Field } from 'formik'
 import styled from 'styled-components'
+import Recaptcha from 'react-google-recaptcha'
 import * as yup from 'yup'
+import api from 'api'
 
+import colors from 'style/colors'
 import { Grid } from 'components/layout'
 import { Input, Button } from 'components/ui'
+
+const RECAPTCHA_KEY = process.env.GATSBY_RECAPTCHA_KEY
 
 const initialValues = {
   name: '',
@@ -23,78 +28,131 @@ const schema = yup.object({
     .string()
     .matches(/^\+?[0-9()\- ]+$/, 'Введите корректный телефон')
     .required('Введите телефон'),
-  message: yup.string().required('Введите сообщение')
+  message: yup.string().required('Введите сообщение'),
+  recaptcha: yup.string().required()
 })
 
-function FeedbackForm () {
-  return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={schema}
-      onSubmit={data => console.log(data)}
-    >
-      {({ isSubmitting, isValid, touched, errors }) => (
-        <Form>
-          <Grid>
-            <Grid.Unit size={1}>
-              <Field name="name">
-                {({ field }) => (
-                  <Input
-                    {...field}
-                    placeholder="Имя"
-                    error={touched.name && errors.name}
-                  />
-                )}
-              </Field>
-            </Grid.Unit>
-            <Grid.Unit size={1}>
-              <Field name="email">
-                {({ field }) => (
-                  <Input
-                    {...field}
-                    placeholder="Email"
-                    error={touched.email && errors.email}
-                  />
-                )}
-              </Field>
-            </Grid.Unit>
-            <Grid.Unit size={1}>
-              <Field name="number">
-                {({ field }) => (
-                  <Input
-                    {...field}
-                    placeholder="Телефон"
-                    error={touched.number && errors.number}
-                  />
-                )}
-              </Field>
-            </Grid.Unit>
-            <Grid.Unit size={1}>
-              <Field name="message">
-                {({ field }) => (
-                  <Input
-                    {...field}
-                    placeholder="Сообщение"
-                    type="textarea"
-                    rows={5}
-                    error={touched.message && errors.message}
-                  />
-                )}
-              </Field>
-            </Grid.Unit>
-            <SubmitGridUnit size={1}>
-              <Button type="submit" disabled={isSubmitting} primary>
-                Оставить заявку
-              </Button>
-            </SubmitGridUnit>
-          </Grid>
-        </Form>
-      )}
-    </Formik>
-  )
+class FeedbackForm extends Component {
+  state = {
+    success: null,
+    error: null
+  }
+  handleSubmit = async data => {
+    try {
+      await api.order(data)
+
+      this.setState({ success: 'Спасибо за заявку!' })
+    } catch (error) {
+      console.error(error)
+      this.setState({ error: 'Произошла ошибка. Попробуйте позже.' })
+    }
+  }
+  render () {
+    const { success, error } = this.state
+
+    if (error || success) {
+      return <Message error={!!error}>{error || success}</Message>
+    }
+
+    return (
+      <Formik
+        initialValues={initialValues}
+        validationSchema={schema}
+        onSubmit={this.handleSubmit}
+      >
+        {({ isSubmitting, isValid, touched, errors, setFieldValue }) => (
+          <Form>
+            <Grid>
+              <Grid.Unit size={1}>
+                <Field name="name">
+                  {({ field }) => (
+                    <Input
+                      {...field}
+                      placeholder="Имя"
+                      error={touched.name && errors.name}
+                    />
+                  )}
+                </Field>
+              </Grid.Unit>
+              <Grid.Unit size={1}>
+                <Field name="email">
+                  {({ field }) => (
+                    <Input
+                      {...field}
+                      placeholder="Email"
+                      error={touched.email && errors.email}
+                    />
+                  )}
+                </Field>
+              </Grid.Unit>
+              <Grid.Unit size={1}>
+                <Field name="number">
+                  {({ field }) => (
+                    <Input
+                      {...field}
+                      placeholder="Телефон"
+                      error={touched.number && errors.number}
+                    />
+                  )}
+                </Field>
+              </Grid.Unit>
+              <Grid.Unit size={1}>
+                <Field name="message">
+                  {({ field }) => (
+                    <Input
+                      {...field}
+                      placeholder="Сообщение"
+                      type="textarea"
+                      rows={5}
+                      error={touched.message && errors.message}
+                    />
+                  )}
+                </Field>
+              </Grid.Unit>
+              <Grid.Unit size={1}>
+                <Field name="recaptcha">
+                  {({ field }) => (
+                    <RecaptchaWrapper>
+                      <Recaptcha
+                        sitekey={RECAPTCHA_KEY}
+                        onChange={value => setFieldValue('recaptcha', value)}
+                      />
+                    </RecaptchaWrapper>
+                  )}
+                </Field>
+              </Grid.Unit>
+              <SubmitGridUnit size={1}>
+                <Button
+                  type="submit"
+                  disabled={!isValid || isSubmitting}
+                  loading={isSubmitting}
+                  primary
+                >
+                  Оставить заявку
+                </Button>
+              </SubmitGridUnit>
+            </Grid>
+          </Form>
+        )}
+      </Formik>
+    )
+  }
 }
 
 export default FeedbackForm
+
+const Message = styled.p`
+  margin: 0;
+  font-size: 1.5rem;
+  text-align: center;
+  color: ${({ error }) => (error ? colors.danger : colors.text)};
+`
+
+const RecaptchaWrapper = styled.div`
+  > div > div > div {
+    margin: 0 auto;
+  }
+`
 
 const SubmitGridUnit = styled(Grid.Unit)`
   text-align: center;

@@ -5,4 +5,7 @@ yarn-error.log
 
 # Build directory
 /public
+/lambdas
 .DS_Store
+
+.env.development

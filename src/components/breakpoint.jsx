@@ -1,4 +1,4 @@
-import * as R from 'ramda'
+import { map, objOf } from 'ramda'
 import PropTypes from 'prop-types'
 import withViewport from 'react-with-viewport'
 import breakpoints from 'style/breakpoints'
@@ -13,5 +13,5 @@ function Breakpoint ({ children: render, breakPoint }) {
 }
 
 export default withViewport({
-  breakPoints: R.map(R.objOf('width'), breakpoints)
+  breakPoints: map(objOf('width'), breakpoints)
 })(Breakpoint)

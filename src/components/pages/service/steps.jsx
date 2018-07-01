@@ -42,7 +42,7 @@ const StepsList = styled.ul`
   max-width: 500px;
   margin: 0 auto;
   ${breakpoint('l')`
-    padding-bottom: 4em;
+    padding: 4em 0;
     max-width: initial;
     margin: 0;
     align-items: center;
@@ -52,14 +52,14 @@ const StepsList = styled.ul`
 
 const StepDescription = styled.p`
   ${reset.p};
-  font-size: 1rem;
+  font-size: 0.8rem;
   max-height: 2.5em;
   margin-left: 0.5em;
   ${breakpoint('l')`
-    max-height: auto;
+    max-height: unset;
     text-align: center;
     margin: 1rem 0;
-    width: 10em;
+    width: 15em;
     position: absolute;
     transform: translateX(-50%);
     left: 50%;
@@ -93,11 +93,16 @@ const StepItem = styled.li`
       border: none;
       border-top: 2px solid ${colors.gray};
       height: auto;
-      width: 5em;
+      width: 4em;
       margin: 0 0.5em;
     }
     &:last-child:after {
       display: none;
+    }
+    
+    &:nth-child(even) ${StepDescription} {
+      top: auto;
+      bottom: 100%;
     }
   `};
 `
