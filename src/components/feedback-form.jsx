@@ -37,15 +37,14 @@ class FeedbackForm extends Component {
     success: null,
     error: null
   }
-  handleSubmit = async data => {
-    try {
-      await api.order(data)
-
-      this.setState({ success: 'Спасибо за заявку!' })
-    } catch (error) {
-      console.error(error)
-      this.setState({ error: 'Произошла ошибка. Попробуйте позже.' })
-    }
+  handleSubmit = data => {
+    api
+      .order(data)
+      .then(() => this.setState({ success: 'Спасибо за заявку!' }))
+      .catch(error => {
+        console.error(error)
+        this.setState({ error: 'Произошла ошибка. Попробуйте позже.' })
+      })
   }
   render () {
     const { success, error } = this.state

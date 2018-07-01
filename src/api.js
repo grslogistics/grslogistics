@@ -1,9 +1,7 @@
 import axios from 'axios'
 
-const api = axios.create({
-  baseURL: window.location.origin + `/.netlify/functions`
-})
+const getUrl = url => window.location.origin + `/.netlify/functions` + url
 
 export default {
-  order: data => api.post('/order', data)
+  order: data => axios.post(getUrl('/order'), data)
 }
