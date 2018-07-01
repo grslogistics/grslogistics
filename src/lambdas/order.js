@@ -39,7 +39,7 @@ exports.handler = async function (event, context) {
   await validateCaptcha(code)
 
   await sendMail({
-    from: '"GRS Logistics" <orders@grslogistics.ru>',
+    from: `"GRS Logistics" <${process.env.YANDEX_USER}>`,
     to: 'orders@grslogistics.ru',
     subject: `Новая заявка: ${orderdata.name}`,
     ...createMail(orderdata)
