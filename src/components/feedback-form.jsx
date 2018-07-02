@@ -6,6 +6,7 @@ import Recaptcha from 'react-google-recaptcha'
 import * as yup from 'yup'
 import api from 'api'
 
+import { preserveLineBreaks } from 'utils'
 import colors from 'style/colors'
 import { Grid } from 'components/layout'
 import { Input, Button } from 'components/ui'
@@ -45,7 +46,13 @@ class FeedbackForm extends Component {
     const { page } = this.props
     api
       .order(page ? { ...data, page } : data)
-      .then(() => this.setState({ success: 'Спасибо за заявку!' }))
+      .then(() =>
+        this.setState({
+          success: preserveLineBreaks(
+            'Спасибо за заявку!\n Наш менеджер свяжется с Вами в ближайшее время.'
+          )
+        })
+      )
       .catch(error => {
         console.error(error)
         this.setState({ error: 'Произошла ошибка. Попробуйте позже.' })
@@ -105,7 +112,7 @@ class FeedbackForm extends Component {
                   {({ field }) => (
                     <Input
                       {...field}
-                      placeholder="Сообщение"
+                      placeholder="Детали заказа"
                       type="textarea"
                       rows={5}
                       error={touched.message && errors.message}
@@ -132,7 +139,7 @@ class FeedbackForm extends Component {
                   loading={isSubmitting}
                   primary
                 >
-                  Оставить заявку
+                  Запросить стоимость
                 </Button>
               </SubmitGridUnit>
             </Grid>

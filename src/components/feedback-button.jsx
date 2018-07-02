@@ -26,7 +26,7 @@ function FeedbackButton ({ children, page, ...props }) {
       {({ isOpened, close }) => (
         <Inner open={isOpened} onClick={stopPropagation}>
           <Modal.Header>
-            Обратная связь
+            Запрос ставки
             <Close onClick={close} />
           </Modal.Header>
           <FeedbackForm page={page} key={`feedback_${isOpened}`} />
