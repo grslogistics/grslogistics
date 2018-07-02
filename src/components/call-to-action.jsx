@@ -11,10 +11,11 @@ import FeedbackButton from 'components/feedback-button'
 CallToAction.propTypes = {
   title: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
-  button: PropTypes.string.isRequired
+  button: PropTypes.string.isRequired,
+  page: PropTypes.string
 }
 
-function CallToAction ({ text, title, button }) {
+function CallToAction ({ text, title, page, button }) {
   return (
     <Container background={colors.primary}>
       <Inner>
@@ -22,7 +23,9 @@ function CallToAction ({ text, title, button }) {
           <Title>{title}</Title>
           <Text>{text}</Text>
         </div>
-        <FeedbackButton white>{button}</FeedbackButton>
+        <FeedbackButton page={page} white>
+          {button}
+        </FeedbackButton>
       </Inner>
     </Container>
   )

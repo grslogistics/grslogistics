@@ -83,7 +83,18 @@ const StepItem = styled.li`
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-bottom: 1em;
+  &:after {
+    display: block;
+    content: '';
+    border: none;
+    border-right: 2px solid ${colors.gray};
+    height: 1em;
+    margin: 0.5em 1.25em;
+    align-self: flex-start;
+  }
+  &:last-child:after {
+    display: none;
+  }
   ${breakpoint('l')`
     margin-bottom: 0;
     flex-direction: row;
@@ -95,6 +106,7 @@ const StepItem = styled.li`
       height: auto;
       width: 4em;
       margin: 0 0.5em;
+      align-self: center;
     }
     &:last-child:after {
       display: none;

@@ -26,7 +26,8 @@ const schema = yup.object({
     .matches(/^\+?[0-9()\- ]+$/, 'Incorrect phone')
     .required(),
   message: yup.string().required(),
-  recaptcha: yup.string().required()
+  recaptcha: yup.string().required(),
+  page: yup.string()
 })
 
 exports.handler = async function (event, context) {
@@ -68,17 +69,19 @@ async function validateCaptcha (code) {
   }
 }
 
-function createMail ({ name, number, email, message }) {
+function createMail ({ name, number, email, message, page }) {
   const text =
     `Имя: ${name}\n` +
     `Телефон: ${number}\n` +
     `Email: ${email}\n` +
-    `Сообщение: ${message}`
+    `Сообщение: ${message}` +
+    (page ? `Страница: ${page}` : '')
   const html =
     `<div><strong>Имя: </strong>${name}</div>` +
     `<div><strong>Телефон: </strong>${number}</div>` +
     `<div><strong>Email: </strong>${email}</div>` +
-    `<div><strong>Сообщение: </strong>${message}</div>`
+    `<div><strong>Сообщение: </strong>${message}</div>` +
+    (page ? `<div><strong>Страница: </strong>${page}</div>` : '')
 
   return { text, html }
 }

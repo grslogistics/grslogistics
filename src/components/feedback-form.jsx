@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Form, Formik, Field } from 'formik'
 import styled from 'styled-components'
 import Recaptcha from 'react-google-recaptcha'
@@ -33,13 +34,17 @@ const schema = yup.object({
 })
 
 class FeedbackForm extends Component {
+  static propTypes = {
+    page: PropTypes.string
+  }
   state = {
     success: null,
     error: null
   }
   handleSubmit = data => {
+    const { page } = this.props
     api
-      .order(data)
+      .order(page ? { ...data, page } : data)
       .then(() => this.setState({ success: 'Спасибо за заявку!' }))
       .catch(error => {
         console.error(error)
@@ -142,14 +147,20 @@ export default FeedbackForm
 
 const Message = styled.p`
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 2rem;
+  font-weight: bold;
   text-align: center;
   color: ${({ error }) => (error ? colors.danger : colors.text)};
 `
 
 const RecaptchaWrapper = styled.div`
+  position: relative;
+  min-height: 78px;
   > div > div > div {
-    margin: 0 auto;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) scale(0.86);
   }
 `
 

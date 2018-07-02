@@ -36,7 +36,7 @@ function Service ({ title, slug, description, image, steps, additional, cta }) {
       <Description text={description} />
       <Steps list={steps} />
       <Additional {...additional} />
-      <Cta {...cta} />
+      <Cta page={`Услуги > ${title}`} {...cta} />
     </Fragment>
   )
 }

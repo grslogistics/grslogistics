@@ -28,7 +28,7 @@ function Main ({ hero, services, about, pros, cta, posts, postsEnabled }) {
       <About {...about} />
       <Services {...services} />
       <Pros {...pros} />
-      <CallToAction {...cta} />
+      <CallToAction page="Главная" {...cta} />
     </Fragment>
   )
 }

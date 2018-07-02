@@ -16,6 +16,8 @@ const GRID_SIZE = {
   l: 1 / 6
 }
 
+const GUTTERS = { vertical: 0, horizontal: 0 }
+
 ServicesList.propTypes = {
   list: PropTypes.array
 }
@@ -23,7 +25,7 @@ ServicesList.propTypes = {
 function ServicesList ({ list }) {
   return (
     <Fragment>
-      <Grid horizontalAlign="center">
+      <Grid horizontalAlign="center" gutters={GUTTERS}>
         {list.map((service, i) => (
           <Grid.Unit key={`${service.url}${i}`} size={GRID_SIZE}>
             <ServicesItem {...service} />

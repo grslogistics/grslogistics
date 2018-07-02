@@ -23,7 +23,7 @@ function ContactsSection ({ companyName, address, phoneNumbers, email }) {
     <Section title="Свяжитесь с нами">
       <Grid reverse={{ xs: true, m: false }}>
         <Grid.Unit size={GRID_SIZES}>
-          <FeedbackForm />
+          <FeedbackForm page="Контакты" />
         </Grid.Unit>
         <Grid.Unit size={GRID_SIZES}>
           <ContactsItem icon="cus-grs" label={companyName} />

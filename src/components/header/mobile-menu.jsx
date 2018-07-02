@@ -1,14 +1,14 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { Collapse } from 'react-collapse'
 import breakpoint from 'styled-components-breakpoint'
-import { Portal } from 'react-portal'
 import Link from 'gatsby-link'
 
 import Flag from 'components/flag'
 import FaIcon from 'components/icon'
 import reset from 'style/reset'
+import Dialog from 'components/dialog'
 import { stopPropagation } from 'utils'
 
 export default class MobileMenu extends Component {
@@ -26,17 +26,17 @@ export default class MobileMenu extends Component {
       })
     )
   }
-  renderSubmenuItem = toggleMenu => ({ label, url }, i) => {
+  renderSubmenuItem = closeMenu => ({ label, url }, i) => {
     const key = `${i}:${url}:${label}`
     return (
       <SubmenuItem key={key}>
-        <SubmenuLink to={url} onClick={toggleMenu}>
+        <SubmenuLink to={url} onClick={closeMenu}>
           {label}
         </SubmenuLink>
       </SubmenuItem>
     )
   }
-  renderItem = toggleMenu => ({ label, url, children }, i) => {
+  renderItem = closeMenu => ({ label, url, children }, i) => {
     const key = `${i}:${url}:${label}`
     return children ? (
       <Flag key={key}>
@@ -51,7 +51,7 @@ export default class MobileMenu extends Component {
               springConfig={{ stiffness: 300, damping: 30 }}
             >
               <SubmenuList>
-                {children.map(this.renderSubmenuItem(toggleMenu))}
+                {children.map(this.renderSubmenuItem(closeMenu))}
               </SubmenuList>
             </Collapse>
           </MenuItem>
@@ -59,7 +59,7 @@ export default class MobileMenu extends Component {
       </Flag>
     ) : (
       <MenuItem key={key}>
-        <MenuLink to={url} onClick={toggleMenu}>
+        <MenuLink to={url} onClick={closeMenu}>
           {label}
         </MenuLink>
       </MenuItem>
@@ -68,24 +68,22 @@ export default class MobileMenu extends Component {
   render () {
     const { items } = this.props
     return (
-      <Flag>
-        {({ isOn, setOn, setOff, toggle }) => (
-          <Fragment>
-            <Button onClick={setOn}>
-              <Icon icon="bars" size="lg" />
-            </Button>
-            <Portal>
-              <Backdrop onClick={setOff} open={isOn}>
-                <MenuWrapper open={isOn}>
-                  <MenuList onClick={stopPropagation}>
-                    {items.map(this.renderItem(toggle))}
-                  </MenuList>
-                </MenuWrapper>
-              </Backdrop>
-            </Portal>
-          </Fragment>
+      <Dialog
+        backdropOpacity={0.3}
+        renderTrigger={({ open }) => (
+          <Button onClick={open}>
+            <Icon icon="bars" size="lg" />
+          </Button>
         )}
-      </Flag>
+      >
+        {({ isOpened, close }) => (
+          <MenuWrapper open={isOpened}>
+            <MenuList onClick={stopPropagation}>
+              {items.map(this.renderItem(close))}
+            </MenuList>
+          </MenuWrapper>
+        )}
+      </Dialog>
     )
   }
 }
@@ -98,21 +96,6 @@ const Icon = styled(FaIcon)`
 const Button = styled.button`
   ${reset.button};
   outline: none;
-  ${breakpoint('l')`
-    display: none;
-  `};
-`
-
-const Backdrop = styled.div`
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  transition: all 0.2s;
-  pointer-events: ${({ open }) => (open ? 'initial' : 'none')};
-
   ${breakpoint('l')`
     display: none;
   `};

@@ -101,11 +101,10 @@ const MenuItem = styled.li`
   margin-left: 1.5em;
   ${DropdownList} {
     opacity: 0;
-    ${getPosition(200, 200)};
+    ${getPosition(95, 95)};
   }
   &:hover ${DropdownList} {
     pointer-events: initial;
-    ${getPosition(95, 95)};
     opacity: 1;
   }
 `

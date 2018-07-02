@@ -10,10 +10,11 @@ import FeedbackForm from 'components/feedback-form'
 import CloseIcon from 'assets/close.svg'
 
 FeedbackButton.propTypes = {
-  children: PropTypes.any
+  children: PropTypes.any,
+  page: PropTypes.string
 }
 
-function FeedbackButton ({ children, ...props }) {
+function FeedbackButton ({ children, page, ...props }) {
   return (
     <Dialog
       renderTrigger={({ open }) => (
@@ -28,9 +29,7 @@ function FeedbackButton ({ children, ...props }) {
             Обратная связь
             <Close onClick={close} />
           </Modal.Header>
-          <FormWrapper>
-            <FeedbackForm key={`feedback_${isOpened}`} />
-          </FormWrapper>
+          <FeedbackForm page={page} key={`feedback_${isOpened}`} />
         </Inner>
       )}
     </Dialog>
@@ -50,11 +49,7 @@ const Close = styled(CloseIcon)`
 `
 
 const Inner = styled(Modal)`
+  margin: auto;
   transform: translateY(${({ open }) => (open ? '0' : '100%')});
   opacity: ${({ open }) => (open ? 1 : 0)};
-`
-
-const FormWrapper = styled.div`
-  overflow-y: auto;
-  overflow-x: hidden;
 `

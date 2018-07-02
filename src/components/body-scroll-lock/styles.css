@@ -1,0 +1,4 @@
+body.body-scroll-lock {
+  position: fixed;
+  overflow: hidden;
+}

@@ -20,7 +20,7 @@ function HeroSection ({ title, subtitle, button, image }) {
       <Inner>
         <Title>{title}</Title>
         <Subtitle>{subtitle}</Subtitle>
-        <FeedbackButton>{button}</FeedbackButton>
+        <FeedbackButton page="Главная">{button}</FeedbackButton>
       </Inner>
     </Section>
   )
