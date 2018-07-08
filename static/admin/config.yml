@@ -52,7 +52,6 @@ collections:
         file: content/pages/about.yml
         fields:
           - { name: title, label: Заголовок }
-          - { name: image, label: Изображение, widget: image }
           - name: body
             label: Текст
             widget: markdown

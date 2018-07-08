@@ -4,11 +4,11 @@ import PropTypes from 'prop-types'
 import Breadcrumbs from 'components/breadcrumbs'
 import { Title } from 'components/meta'
 import Cta from 'components/call-to-action'
+import PageHeading from 'components/page-heading'
 
 import Description from './description'
 import Steps from './steps'
 import Additional from './additional'
-import Heading from './heading'
 
 Service.propTypes = {
   title: PropTypes.string.isRequired,
@@ -32,7 +32,7 @@ function Service ({ title, slug, description, image, steps, additional, cta }) {
     <Fragment>
       <Title title={title} />
       <Breadcrumbs list={['Услуги', title]} />
-      <Heading title={title} image={image} />
+      <PageHeading title={title} image={image} />
       <Description text={description} />
       <Steps list={steps} />
       <Additional {...additional} />

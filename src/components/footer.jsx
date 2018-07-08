@@ -18,6 +18,7 @@ function Footer ({ copyright, menu }) {
     <Outer>
       <Container>
         <Copyright>{copyright}</Copyright>
+        <BackOnTop onClick={scrollOnTop}>Вернуться наверх</BackOnTop>
         <Menu dropdownOnTop items={menu} />
       </Container>
     </Outer>
@@ -52,3 +53,15 @@ const Menu = styled(MenuComponent)`
     display: flex;
   `};
 `
+
+const BackOnTop = styled.span`
+  display: inline;
+  cursor: pointer;
+  ${breakpoint('l')`
+    display: none;
+  `};
+`
+
+function scrollOnTop () {
+  window.scrollTo(0, 0)
+}
