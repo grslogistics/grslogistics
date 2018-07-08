@@ -9,5 +9,6 @@
       "utils": ["./utils"],
       "hocs": ["./hocs"]
     }
-  }
+  },
+  "exclude": ["node_modules", ".cache", "public", "build"]
 }

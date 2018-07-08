@@ -3,7 +3,8 @@ const proxy = require('http-proxy-middleware')
 module.exports = {
   siteMetadata: {
     title: 'GRS logistics',
-    copyright: '© 2014 Grs Logistics'
+    copyright: '© 2014 Grs Logistics',
+    siteUrl: process.env.URL || 'https://grslogistics.ru'
   },
   plugins: [
     {
@@ -40,6 +41,18 @@ module.exports = {
     'gatsby-plugin-styled-components',
     'gatsby-plugin-resolve-src',
     'gatsby-plugin-netlify-cache',
+    'gatsby-plugin-sitemap',
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options:
+        process.env.CONTEXT === 'production'
+          ? { policy: [{ userAgent: '*' }] }
+          : {
+            policy: [{ userAgent: '*', disallow: ['/'] }],
+            sitemap: null,
+            host: null
+          }
+    },
     {
       resolve: 'gatsby-plugin-netlify-cms',
       options: {
