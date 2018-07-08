@@ -2,3 +2,15 @@
   functions = "lambdas/"
   publish = "public"
   command = "npm run build"
+
+[[redirects]]
+  from = "https://grslogistics.netlify.com/*"
+  to = "https://grslogistics.ru/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://develop.grslogistics.netlify.com/*"
+  to = "https://develop.grslogistics.ru/:splat"
+  status = 301
+  force = true
