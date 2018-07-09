@@ -58,6 +58,12 @@ module.exports = {
       options: {
         modulePath: `${__dirname}/src/cms/cms.js`
       }
+    },
+    {
+      resolve: 'gatsby-plugin-google-tagmanager',
+      options: {
+        id: process.env.GTM_ID
+      }
     }
   ],
   developMiddleware: app => {
