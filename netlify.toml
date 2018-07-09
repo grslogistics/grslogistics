@@ -3,6 +3,9 @@
   publish = "public"
   command = "npm run build"
 
+[context.branch-deploy.environment]
+  NODE_ENV = "production"
+
 [[redirects]]
   from = "https://grslogistics.netlify.com/*"
   to = "https://grslogistics.ru/:splat"
