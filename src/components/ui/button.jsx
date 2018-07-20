@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Ink from 'react-ink'
 
-import Icon from './icon'
+import Icon from 'components/icon'
 import colors from 'style/colors'
 import reset from 'style/reset'
 
@@ -17,7 +17,8 @@ Button.propTypes = {
   black: PropTypes.bool,
   disabled: PropTypes.bool,
   fullWidth: PropTypes.bool,
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
+  icon: PropTypes.any
 }
 
 const themes = {
@@ -75,10 +76,16 @@ const sizes = {
   }
 }
 
-function Button ({ children, disabled, fullWidth, loading, href, ...props }) {
+function Button (props) {
+  const { children, icon, disabled, fullWidth, loading, href } = props
   const ButtonComponent = href ? BtnLink : Btn
   const theme = themes[getButtonTheme(props)]
   const size = sizes[getButtonSize(props)]
+  const buttonIcon = loading ? (
+    <ButtonIcon icon="spinner" pulse />
+  ) : icon ? (
+    <ButtonIcon icon={icon} />
+  ) : null
   return (
     <ButtonComponent
       fullWidth={fullWidth}
@@ -88,7 +95,7 @@ function Button ({ children, disabled, fullWidth, loading, href, ...props }) {
       disabled={disabled}
       {...props}
     >
-      {loading && <Loader icon="spinner" pulse />}
+      {buttonIcon}
       {children}
       {!disabled && <Ink style={{ color: theme.ripple }} />}
     </ButtonComponent>
@@ -103,6 +110,7 @@ const size = prop => props => props.size[prop]
 const Btn = styled.button`
   ${reset.a};
   ${reset.button};
+  flex-shrink: 0;
   box-sizing: border-box;
   display: inline-block;
   position: relative;
@@ -121,7 +129,7 @@ const Btn = styled.button`
 `
 const BtnLink = Btn.withComponent('a')
 
-const Loader = styled(Icon)`
+const ButtonIcon = styled(Icon)`
   margin-right: 0.5rem;
 `
 

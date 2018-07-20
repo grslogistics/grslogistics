@@ -62,7 +62,7 @@ const Input = styled.input`
   line-height: 1rem;
   padding: 0.8125rem 1rem;
   background: #fafafa;
-  border: 1px solid ${({ error }) => (error ? colors.danger : colors.textLight)};
+  border: 1px solid ${({ error }) => (error ? colors.danger : '#d3d3d3')};
   border-radius: 5px;
   transition: all 0.2s;
   opacity: 1;

@@ -1,3 +1,7 @@
 export { default as Button } from './button'
 export { default as Input } from './input'
-export { default as Icon } from './icon'
+export { default as Modal } from './modal'
+export { default as Link } from './link'
+export { default as Table } from './table'
+export { default as Accordion } from './accordion'
+export { default as List } from './list'

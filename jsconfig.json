@@ -2,12 +2,13 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-      "components": "./components",
-      "layouts": "./layouts",
-      "pages": "./pages",
-      "styles": "./styles",
-      "utils": "./utils",
-      "hocs": "./hocs"
+      "components": ["./components"],
+      "layouts": ["./layouts"],
+      "pages": ["./pages"],
+      "styles": ["./styles"],
+      "utils": ["./utils"],
+      "hocs": ["./hocs"]
     }
-  }
+  },
+  "exclude": ["node_modules", ".cache", "public", "build"]
 }

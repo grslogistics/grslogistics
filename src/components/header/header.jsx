@@ -1,79 +1,48 @@
 import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import colors from 'style/colors'
+import Link from 'gatsby-link'
 
+import colors from 'style/colors'
 import { Container } from 'components/layout'
 import Logo from 'components/logo'
 
 import Preheader from './preheader'
 import PreheaderItem from './preheader-item'
-import Menu from './menu'
+import Menu from 'components/menu'
 import MobileMenu from './mobile-menu'
 
 Header.propTypes = {
-  children: PropTypes.func
+  children: PropTypes.func,
+  menu: PropTypes.array,
+  phoneNumber: PropTypes.string.isRequired,
+  address: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired
 }
 
-const menu = [
-  {
-    label: 'Главная',
-    url: '/'
-  },
-  {
-    label: 'О компании',
-    url: '/about'
-  },
-  {
-    groupLabel: 'Все услуги',
-    label: 'Услуги',
-    url: '/services',
-    children: [
-      { label: 'Перевозки морем', url: '/test' },
-      { label: 'Мультимодальные перевозки', url: '/test2' }
-    ]
-  },
-  {
-    groupLabel: 'Вся полезная информация',
-    label: 'Полезная информация',
-    children: [
-      { label: 'Перевозки морем', url: '/test' },
-      { label: 'Мультимодальные перевозки', url: '/test2' }
-    ]
-  },
-  {
-    label: 'Новости',
-    url: '/news'
-  },
-  {
-    label: 'Контакты',
-    url: '/contacts'
-  }
-]
-
-function Header ({ children }) {
+function Header ({ children, menu, phoneNumber, email, address }) {
   return (
     <Fragment>
       <Preheader>
-        <PreheaderItem
-          label="+38 (123) 456-78-90"
-          icon="phone-square"
-          url="tel:+3812345678900"
-        />
-        <PreheaderItem
-          label="test@test.com"
-          icon="envelope"
-          url="mailto:test@test.com"
-        />
-        <PreheaderItem
-          label={'ООО "БлаБлаБла", Тольятти, ул. Строителей 87, оф. 78'}
-          icon="map-marker"
-          right
-        />
+        <div>
+          <PreheaderItem
+            label={phoneNumber}
+            icon="phone-square"
+            url={getNumberUrl(phoneNumber)}
+          />
+          <PreheaderItem
+            label="test@test.com"
+            icon="envelope"
+            url={`mailto:${email}`}
+          />
+        </div>
+        <PreheaderItem label={address} icon="map-marker-alt" url="/contacts" />
       </Preheader>
       <HeaderWrapper>
         <HeaderContainer>
-          <Logo />
+          <Link to="/">
+            <Logo />
+          </Link>
           <Menu items={menu} />
           <MobileMenu items={menu} />
         </HeaderContainer>
@@ -95,3 +64,4 @@ const HeaderContainer = styled(Container)`
   align-items: center;
   justify-content: space-between;
 `
+const getNumberUrl = number => 'tel:' + number.replace(/[+()\- ]/g, '')

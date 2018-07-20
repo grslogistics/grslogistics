@@ -31,5 +31,9 @@ export default {
   `,
   p: `
     margin: 0;
+  `,
+  table: `
+    display: table;
+    border-spacing: 0;
   `
 }

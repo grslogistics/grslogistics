@@ -1,24 +1,26 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import breakpoint from 'styled-components-breakpoint'
 
 import reset from 'style/reset'
-import { Button } from 'components/ui'
+import FeedbackButton from 'components/feedback-button'
 import { Section } from 'components/layout'
 
 HeroSection.propTypes = {
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
-  buttonLabel: PropTypes.string.isRequired
+  button: PropTypes.string.isRequired,
+  image: PropTypes.object
 }
 
-function HeroSection ({ title, subtitle, buttonLabel }) {
+function HeroSection ({ title, subtitle, button, image }) {
   return (
-    <Section background="#2a516e">
+    <Section background="#2a516e" image={image}>
       <Inner>
         <Title>{title}</Title>
         <Subtitle>{subtitle}</Subtitle>
-        <Button>{buttonLabel}</Button>
+        <FeedbackButton page="Главная">{button}</FeedbackButton>
       </Inner>
     </Section>
   )
@@ -45,7 +47,12 @@ const Subtitle = styled.h3`
 `
 
 const Inner = styled.div`
+  height: 400px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
+  ${breakpoint('m')`
+    align-items: flex-end;
+  `};
 `
