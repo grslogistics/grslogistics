@@ -31,7 +31,7 @@ function Header ({ children, menu, phoneNumber, email, address }) {
             url={getNumberUrl(phoneNumber)}
           />
           <PreheaderItem
-            label="test@test.com"
+            label={email}
             icon="envelope"
             url={`mailto:${email}`}
           />
